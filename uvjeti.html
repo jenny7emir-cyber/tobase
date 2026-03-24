@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uvjeti korištenja – To Base</title>
+  <meta name="description" content="Uvjeti korištenja web stranice To Base d.o.o." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d14;
+      --cyan: #00c4cc;
+      --pink: #ff2d8a;
+      --cyan-dim: rgba(0,196,204,0.10);
+      --warm-grey: #8a8a9a;
+      --off-white: #f7f7fc;
+      --surface: #ffffff;
+      --border: rgba(0,196,204,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 5vw;
+      background: rgba(247,247,252,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img { height: 46px; width: auto; display: block; transition: transform 0.2s; }
+    .nav-logo:hover img { transform: scale(1.06); }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--cyan); }
+    .nav-back svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .page-hero {
+      background: var(--ink);
+      color: #fff;
+      padding: 5rem 5vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 50%; height: 150%;
+      background: linear-gradient(135deg, rgba(0,196,204,0.10) 0%, rgba(255,45,138,0.07) 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; max-width: 680px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.2rem;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-hero h1 em { font-style: italic; color: var(--pink); }
+
+    .page-hero .meta { font-size: 0.82rem; color: rgba(255,255,255,0.38); font-weight: 300; }
+
+    .content-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 5vw 7rem;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--cyan);
+      padding: 2rem 2.2rem;
+      margin-bottom: 4rem;
+    }
+
+    .toc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .toc ol { padding-left: 1.2rem; }
+    .toc li { margin-bottom: 0.35rem; }
+    .toc a { color: var(--warm-grey); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .toc a:hover { color: var(--cyan); }
+
+    section.legal { margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(0,196,204,0.12); }
+    section.legal:last-of-type { border-bottom: none; }
+
+    .sec-num { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; display: block; }
+
+    h2.sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1.3rem;
+      line-height: 1.2;
+    }
+
+    p { margin-bottom: 1rem; font-size: 0.95rem; color: #2a2a35; }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { padding-left: 1.4rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; font-size: 0.95rem; color: #2a2a35; }
+    strong { color: var(--ink); font-weight: 500; }
+
+    .info-box {
+      background: var(--cyan-dim);
+      border-left: 3px solid var(--cyan);
+      padding: 1.1rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-box p { margin: 0; font-size: 0.92rem; }
+
+    .warn-box {
+      background: rgba(255,45,138,0.07);
+      border-left: 3px solid var(--pink);
+      padding: 1.1rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .warn-box p { margin: 0; font-size: 0.92rem; }
+
+    .contact-block {
+      background: var(--ink);
+      color: #fff;
+      padding: 2.5rem;
+      margin-top: 4rem;
+      border-top: 3px solid var(--pink);
+    }
+
+    .contact-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .contact-block p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .contact-block a { color: var(--cyan); text-decoration: none; }
+    .contact-block a:hover { text-decoration: underline; }
+
+    footer {
+      background: #080810;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 2.5rem 5vw;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    .footer-legal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-legal a { font-size: 0.72rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover, .footer-legal a.active { color: var(--cyan); }
+    .footer-links-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0.8rem 4vw; }
+      .nav-logo img { height: 38px; }
+      .nav-logo-text { font-size: 1.2rem; }
+      .page-hero { padding: 4rem 4vw 3rem; }
+      .content-wrap { padding: 3.5rem 4vw 5rem; }
+      .toc { padding: 1.5rem 1.8rem; }
+      .contact-block { padding: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 5vw; }
+      .nav-logo img { height: 34px; }
+      .nav-logo-text { font-size: 1.05rem; letter-spacing: 0.13em; }
+      .nav-back span { display: none; }
+
+      .page-hero { padding: 3rem 5vw 2.5rem; }
+      .page-hero h1 { font-size: 2.2rem; }
+
+      .content-wrap { padding: 2.5rem 5vw 4rem; }
+
+      .toc { padding: 1.2rem 1.4rem; margin-bottom: 2.5rem; }
+      .toc ol { padding-left: 1rem; }
+
+      section.legal { margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
+      h2.sec-title { font-size: 1.45rem; }
+
+      .info-box, .warn-box { padding: 1rem 1.2rem; }
+
+      .contact-block { padding: 1.8rem 1.4rem; }
+      .contact-block h3 { font-size: 1.25rem; }
+
+      footer { padding: 2rem 5vw; text-align: left; }
+      .footer-legal { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .footer-links-row { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="IMG_0138.png" alt="To Base logo" />
+    <span class="nav-logo-text">To Base</span>
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 19l-7-7 7-7"/></svg>
+    <span>Početna</span>
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Pravni dokumenti</span>
+    <h1>Uvjeti <em>korištenja</em></h1>
+    <p class="meta">Posljednje ažuriranje: lipanj 2025. &nbsp;·&nbsp; To Base d.o.o.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="toc">
+    <div class="toc-title">Sadržaj</div>
+    <ol>
+      <li><a href="#prihvat">Prihvat uvjeta</a></li>
+      <li><a href="#usluge-opis">Opis usluga</a></li>
+      <li><a href="#koristenje-stranice">Korištenje web stranice</a></li>
+      <li><a href="#intelektualno">Intelektualno vlasništvo</a></li>
+      <li><a href="#tocnost">Točnost informacija</a></li>
+      <li><a href="#odgovornost">Ograničenje odgovornosti</a></li>
+      <li><a href="#vanjske-poveznice">Vanjske poveznice</a></li>
+      <li><a href="#raskid">Raskid pristupa</a></li>
+      <li><a href="#izmjene-uvjeta">Izmjene uvjeta</a></li>
+      <li><a href="#pravo-uvjeti">Mjerodavno pravo i nadležnost</a></li>
+      <li><a href="#kontakt-uvjeti">Kontakt</a></li>
+    </ol>
+  </div>
+
+  <section class="legal" id="prihvat">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Prihvat uvjeta</h2>
+    <p>Korištenjem web stranice <strong>to-base.hr</strong> i svih njenih podstranica, te usluga društva <strong>To Base d.o.o.</strong>, potvrđujete da ste pročitali, razumjeli i bezuvjetno prihvatili ove Uvjete korištenja.</p>
+    <p>Ako se ne slažete s ovim uvjetima u cijelosti, molimo vas da odmah prestanete koristiti ovu web stranicu i naše usluge.</p>
+    <div class="info-box">
+      <p>Ovi uvjeti primjenjuju se na sve posjetitelje, korisnike i ostale osobe koje pristupaju ili koriste našu web stranicu i usluge, neovisno o načinu pristupa.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="usluge-opis">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Opis usluga</h2>
+    <p>To Base d.o.o. je poslovni posrednik i savjetnik koji pruža usluge u sljedećim područjima:</p>
+    <ul>
+      <li><strong>Posredovanje u prometu nekretninama</strong> — spajanje investitora, kupaca i projekata</li>
+      <li><strong>eMobility i energetska rješenja</strong> — infrastruktura za punjenje vozila, suradnja s ChargePort</li>
+      <li><strong>Montažna i modularna gradnja</strong> — GLS metalna konstrukcija, projekti od terena do ključa</li>
+      <li><strong>Investicijsko savjetovanje i poslovni razvoj</strong> — ulazak na tržište, razvoj prodajnih kanala</li>
+      <li><strong>Investicijski projekti</strong> — turizam, energetika, mobilnost na Kvarneru i Dalmaciji</li>
+      <li><strong>Pametna urbana infrastruktura</strong> — video-nadzor, garaže, urbana oprema</li>
+    </ul>
+    <p>Sve informacije objavljene na ovoj web stranici imaju isključivo informativnu svrhu. Ne predstavljaju pravno obvezujuću ponudu, niti garanciju ostvarivosti određenih rezultata ili povrata investicije.</p>
+  </section>
+
+  <section class="legal" id="koristenje-stranice">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Korištenje web stranice</h2>
+    <p>Koristite ovu web stranicu isključivo u zakonite svrhe i na način koji ne narušava prava trećih osoba. Izričito je zabranjeno:</p>
+    <ul>
+      <li>Korištenje stranice na nezakonit ili neovlašteni način</li>
+      <li>Pokušaj narušavanja sigurnosti, dostupnosti ili integriteta sustava</li>
+      <li>Automatizirano prikupljanje sadržaja (scraping) bez pisanog odobrenja</li>
+      <li>Objavljivanje ili slanje štetnih, uvredljivih, lažnih ili obmanjujućih sadržaja</li>
+      <li>Lažno predstavljanje ili prikrivanje identiteta</li>
+      <li>Preopterećivanje serverske infrastrukture</li>
+      <li>Pokušaj zaobilaska tehničkih mjera zaštite</li>
+    </ul>
+    <p>To Base d.o.o. zadržava pravo ograničenja ili trajne zabrane pristupa web stranici bez prethodne najave u slučaju kršenja ovih uvjeta.</p>
+  </section>
+
+  <section class="legal" id="intelektualno">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Intelektualno vlasništvo</h2>
+    <p>Svi sadržaji objavljeni na ovoj web stranici — uključujući, ali ne ograničavajući se na: tekstove, fotografije, logotipe, grafike, dizajn, izgled stranice, kodove i ostale materijale — isključivo su vlasništvo društva <strong>To Base d.o.o.</strong> ili su korišteni uz odgovarajuće odobrenje nositelja prava.</p>
+    <p>Zabranjeno je bez pisanog odobrenja:</p>
+    <ul>
+      <li>Reproducirati, kopirati ili distribuirati bilo koji sadržaj s ove stranice</li>
+      <li>Koristiti zaštitne znakove, logotipe ili naziv "To Base" u komercijalne svrhe</li>
+      <li>Modificirati, prilagođavati ili izrađivati izvedenice sadržaja</li>
+      <li>Javno prikazivati sadržaj na drugi web ili fizički medij</li>
+    </ul>
+    <div class="info-box">
+      <p>Za zahtjeve vezane uz korištenje sadržaja, obratite se na <a href="/cdn-cgi/l/email-protection#20494e464f60544f0d424153450e4852"><span class="__cf_email__" data-cfemail="2f464149406f5b40024d4e5c4a01475d">[email&#160;protected]</span></a>.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="tocnost">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Točnost informacija</h2>
+    <p>To Base d.o.o. nastoji osigurati točnost i ažurnost svih informacija objavljenih na web stranici, ali ne jamči njihovu potpunu točnost, sveobuhvatnost ili primjenjivost za određenu svrhu.</p>
+    <p>Informacije o uslugama, cijenama, dostupnosti projekata i poslovnim prilikama podložne su promjenama bez prethodne najave. Sve poslovne odluke trebate donositi na temelju izravne konzultacije s našim timom.</p>
+    <div class="warn-box">
+      <p>Sadržaj ove web stranice ne predstavlja pravni, financijski niti investicijski savjet. Za konkretne poslovne odluke preporučujemo konzultaciju s odgovarajućim stručnjacima.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="odgovornost">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Ograničenje odgovornosti</h2>
+    <p>U mjeri dopuštenoj primjenjivim pravom, To Base d.o.o. ne odgovara za:</p>
+    <ul>
+      <li>Izravne ili neizravne štete nastale korištenjem ili nemogućnošću korištenja web stranice</li>
+      <li>Gubitak podataka, prihoda ili poslovnih prilika</li>
+      <li>Štete uzrokovane virusom, malwareom ili neovlaštenim pristupom trećih osoba</li>
+      <li>Privremenu nedostupnost web stranice uslijed tehničkih radova ili okolnosti van naše kontrole</li>
+      <li>Točnost informacija dostavljenih od strane trećih osoba ili partnera</li>
+    </ul>
+    <p>Naša ukupna odgovornost prema vama, neovisno o osnovi zahtjeva, ograničena je na iznos koji ste nam platili za usluge u prethodnih 12 mjeseci, ili na 100 EUR ako niste platili nikakvu naknadu.</p>
+  </section>
+
+  <section class="legal" id="vanjske-poveznice">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Vanjske poveznice</h2>
+    <p>Naša web stranica može sadržavati poveznice na web stranice trećih strana (npr. partnera ili pružatelja usluga). Te vanjske stranice nisu pod našom kontrolom i ne odgovaramo za njihov sadržaj, politiku privatnosti ni praksu.</p>
+    <p>Postavljanje poveznice ne podrazumijeva naše odobravanje sadržaja ili poslovanja tih trećih strana. Preporučujemo da pročitate uvjete i politiku privatnosti svake stranice koju posjetite.</p>
+  </section>
+
+  <section class="legal" id="raskid">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">Raskid pristupa</h2>
+    <p>To Base d.o.o. zadržava pravo, po vlastitom nahođenju i bez prethodne najave, privremeno ili trajno obustaviti ili ograničiti vaš pristup web stranici ili pojedinim njenim dijelovima, posebice u slučaju:</p>
+    <ul>
+      <li>Kršenja ovih Uvjeta korištenja</li>
+      <li>Sumnje na zlouporabu ili neovlaštenu upotrebu</li>
+      <li>Zahtjeva nadležnih tijela</li>
+      <li>Tehničkih razloga ili sigurnosnih mjera</li>
+    </ul>
+  </section>
+
+  <section class="legal" id="izmjene-uvjeta">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">Izmjene uvjeta</h2>
+    <p>To Base d.o.o. zadržava pravo izmjene ovih Uvjeta korištenja u bilo koje vrijeme. Izmjene stupaju na snagu objavom na ovoj stranici s navedenim datumom ažuriranja.</p>
+    <p>Nastavak korištenja web stranice nakon objave izmijenjenih uvjeta smatra se vašim prihvatom novih uvjeta. Preporučujemo povremenu provjeru ove stranice.</p>
+  </section>
+
+  <section class="legal" id="pravo-uvjeti">
+    <span class="sec-num">10</span>
+    <h2 class="sec-title">Mjerodavno pravo i nadležnost</h2>
+    <p>Na ove Uvjete korištenja i sve sporove koji iz njih proizlaze primjenjuje se <strong>pravo Republike Hrvatske</strong>.</p>
+    <p>Za rješavanje sporova koji bi mogli nastati u vezi s korištenjem ove web stranice ili naših usluga, ugovorne strane se podvrgavaju <strong>nadležnosti stvarno nadležnog suda u Rijeci</strong>.</p>
+    <p>Potrošači koji su rezidenti EU-a mogu koristiti i platformu za online rješavanje sporova (ODR) Europske komisije dostupnu na <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+  </section>
+
+  <section class="legal" id="kontakt-uvjeti">
+    <span class="sec-num">11</span>
+    <h2 class="sec-title">Kontakt</h2>
+    <p>Za sva pitanja vezana uz ove Uvjete korištenja slobodno nas kontaktirajte:</p>
+  </section>
+
+  <div class="contact-block">
+    <h3>To Base d.o.o.</h3>
+    <p>Andrije Štangera 24, 51410 Opatija, Hrvatska</p>
+    <p>OIB: 60378433749 &nbsp;·&nbsp; MBS: 06148735</p>
+    <p>E-mail: <a href="/cdn-cgi/l/email-protection#7e171018113e0a11531c1f0d1b50160c"><span class="__cf_email__" data-cfemail="5930373f36192d36743b382a3c77312b">[email&#160;protected]</span></a></p>
+    <p>Telefon: <a href="tel:+38595385990">+385 95 385 9903</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 To Base d.o.o. · Andrije Štangera 24, 51410 Opatija, Hrvatska</p>
+  <div class="footer-legal">
+    <span>OIB: 60378433749 · MBS: 06148735 · Upisano pri Trgovačkom sudu u 

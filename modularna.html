@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montažna gradnja – To Base</title>
+  <meta name="description" content="GLS metalna konstrukcija – od pronalaska terena do ključa u ruke. Brže, povoljnije i energetski učinkovitije od tradicionalne gradnje." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d0d14;
+      --cyan: #00c4cc;
+      --pink: #ff2d8a;
+      --cyan-dim: rgba(0,196,204,0.1);
+      --pink-dim: rgba(255,45,138,0.08);
+      --warm-grey: #8a8a9a;
+      --off-white: #f7f7fc;
+      --surface: #ffffff;
+      --border: rgba(0,196,204,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--ink); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5vw; background: rgba(247,247,252,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .nav-logo img { height: 58px; width: auto; transition: transform 0.2s; }
+    .nav-logo:hover img { transform: scale(1.06); }
+    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--warm-grey); transition: color 0.2s; }
+    .nav-back:hover { color: var(--cyan); }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-back svg { transition: transform 0.2s; }
+
+    /* HERO */
+    .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-split { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-split-left { background: linear-gradient(to right, rgba(13,13,20,0.65) 0%, rgba(13,13,20,0.25) 100%), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80') center/cover; }
+    .hero-split-right { background: linear-gradient(to left, rgba(13,13,20,0.65) 0%, rgba(13,13,20,0.25) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80') center/cover; }
+    .hero-divider { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 2px; background: linear-gradient(180deg, transparent 0%, var(--cyan) 30%, var(--pink) 70%, transparent 100%); z-index: 2; }
+    .split-badge { position: absolute; z-index: 3; }
+    .split-badge.left { top: 52%; left: 22%; transform: translate(-50%,-50%); }
+    .split-badge.right { top: 52%; left: 78%; transform: translate(-50%,-50%); }
+    .split-badge span { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); background: rgba(13,13,20,0.55); padding: 0.35rem 0.7rem; border-radius: 2px; backdrop-filter: blur(4px); display: inline-block; }
+
+    .hero-content { position: relative; z-index: 4; padding: 3rem 5vw 5rem; width: 100%; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+    .breadcrumb a { color: var(--cyan); text-decoration: none; }
+    .service-tag { display: inline-block; background: rgba(0,196,204,0.12); color: var(--cyan); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 20px; margin-bottom: 1.2rem; border: 1px solid rgba(0,196,204,0.25); opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 6rem); font-weight: 300; line-height: 1.05; color: #fff; margin-bottom: 1.5rem; max-width: 800px; opacity: 0; animation: fadeUp 0.7s 0.3s forwards; }
+    .hero h1 em { font-style: italic; color: var(--cyan); }
+    .hero h1 span { color: var(--pink); }
+    .hero-stats { display: flex; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.45s forwards; }
+    .hstat .n { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--cyan); line-height: 1; display: block; }
+    .hstat .l { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.2rem; display: block; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.55s forwards; }
+
+    .btn-primary { background: var(--pink); color: #fff; text-decoration: none; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s, transform 0.2s; display: inline-block; border: none; cursor: pointer; }
+    .btn-primary:hover { background: var(--cyan); color: var(--ink); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--cyan); text-decoration: none; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; border: 1px solid rgba(0,196,204,0.5); transition: all 0.2s; display: inline-block; }
+    .btn-outline:hover { background: var(--cyan); color: var(--ink); }
+
+    /* MAIN ADVANTAGE BANNER */
+    .main-adv { background: var(--pink); padding: 1.8rem 5vw; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+    .main-adv-icon { font-size: 2rem; flex-shrink: 0; }
+    .main-adv-text strong { display: block; font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 0.2rem; }
+    .main-adv-text span { font-size: 0.85rem; color: rgba(255,255,255,0.78); font-weight: 300; }
+
+    /* SECTION COMMONS */
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+    .section-title em { font-style: italic; color: var(--pink); }
+
+    /* ADVANTAGES */
+    .advantages { padding: 7rem 5vw; background: var(--surface); }
+    .adv-header { margin-bottom: 4rem; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .adv-card { background: var(--off-white); border-radius: 2px; padding: 2rem 1.8rem; border-top: 3px solid transparent; transition: border-top-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+    .adv-card:hover { border-top-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,196,204,0.08); }
+    .adv-card:nth-child(even):hover { border-top-color: var(--pink); }
+    .adv-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .adv-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.6rem; }
+    .adv-card p { font-size: 0.88rem; color: var(--warm-grey); font-weight: 300; line-height: 1.65; }
+    .adv-highlight { display: inline-block; margin-top: 0.8rem; font-size: 0.78rem; font-weight: 500; color: var(--cyan); letter-spacing: 0.06em; }
+
+    /* VS COMPARISON */
+    .comparison { padding: 6rem 5vw; background: var(--ink); position: relative; overflow: hidden; }
+    .comparison::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(0,196,204,0.05) 0%, transparent 60%); }
+    .comparison-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+    .comparison-header .section-label { color: var(--cyan); }
+    .comparison-header .section-title { color: #fff; }
+    .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: start; position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .vs-col-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .vs-col.montazna .vs-col-title { color: var(--cyan); }
+    .vs-col.tradicional .vs-col-title { color: var(--warm-grey); }
+    .vs-items { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .vs-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; font-weight: 300; line-height: 1.5; }
+    .vs-col.montazna .vs-item { color: rgba(255,255,255,0.75); }
+    .vs-col.tradicional .vs-item { color: rgba(255,255,255,0.3); }
+    .vs-col.montazna .vs-item::before { content: '✓'; color: var(--cyan); flex-shrink: 0; }
+    .vs-col.tradicional .vs-item::before { content: '✗'; color: rgba(255,255,255,0.2); flex-shrink: 0; }
+    .vs-divider { display: flex; align-items: center; justify-content: center; padding-top: 3.5rem; }
+    .vs-circle { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--pink)); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: #fff; }
+
+    /* PHOTOS */
+    .photo-section { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 440px; }
+    .photo-item { position: relative; overflow: hidden; }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; filter: brightness(0.8); }
+    .photo-item:hover img { transform: scale(1.05); filter: brightness(0.95); }
+    .photo-label { position: absolute; bottom: 1.2rem; left: 1.2rem; }
+    .photo-label span { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; background: rgba(13,13,20,0.6); padding: 0.3rem 0.7rem; border-radius: 2px; backdrop-filter: blur(4px); }
+
+    /* PROCESS / TIMELINE */
+    .process { padding: 7rem 5vw; background: var(--off-white); }
+    .process-header { margin-bottom: 4rem; }
+    .timeline { position: relative; padding-left: 3rem; }
+    .timeline::before { content: ''; position: absolute; top: 8px; left: 10px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--cyan), var(--pink), rgba(0,196,204,0.1)); }
+    .timeline-item { position: relative; padding-bottom: 3rem; opacity: 0; transform: translateX(-16px); transition: opacity 0.5s, transform 0.5s; }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -2.45rem; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600; color: var(--cyan); z-index: 1; }
+    .timeline-item:nth-child(even) .timeline-dot { border-color: var(--pink); color: var(--pink); }
+    .timeline-time { display: inline-block; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); background: var(--cyan-dim); padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.5rem; }
+    .timeline-item:nth-child(even) .timeline-time { color: var(--pink); background: var(--pink-dim); }
+    .timeline-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+    .timeline-item p { font-size: 0.9rem; color: var(--warm-grey); font-weight: 300; line-height: 1.7; max-width: 650px; }
+
+    /* GLS TECH */
+    .gls { padding: 6rem 5vw; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .gls-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--ink); line-height: 1.2; margin: 1rem 0 1.2rem; }
+    .gls-text h2 em { font-style: italic; color: var(--cyan); }
+    .gls-text p { font-size: 0.92rem; color: var(--warm-grey); font-weight: 300; line-height: 1.75; margin-bottom: 1.2rem; }
+    .gls-specs { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.5rem; }
+    .gls-specs li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; color: var(--ink); font-weight: 300; line-height: 1.5; }
+    .spec-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--cyan-dim); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .gls-visual { position: relative; }
+    .gls-img-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 2px; display: block; }
+    .gls-badge { position: absolute; bottom: -1.5rem; right: -1rem; background: var(--ink); border: 1px solid rgba(0,196,204,0.25); border-left: 3px solid var(--cyan); padding: 1.2rem 1.5rem; border-radius: 2px; }
+    .gls-badge .b-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.3rem; }
+    .gls-badge .b-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; font-weight: 300; }
+
+    /* DOCUMENTATION */
+    .docs { padding: 6rem 5vw; background: var(--off-white); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .docs-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .doc-card { background: var(--surface); border-radius: 2px; padding: 1.8rem 1.5rem; border-top: 3px solid var(--border); transition: border-top-color 0.3s; }
+    .doc-card:hover { border-top-color: var(--pink); }
+    .doc-card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .doc-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.4rem; }
+    .doc-card p { font-size: 0.8rem; color: var(--warm-grey); font-weight: 300; line-height: 1.55; }
+
+    /* CTA */
+    .cta-section { padding: 7rem 5vw; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0,196,204,0.06) 0%, transparent 65%); }
+    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 300; color: #fff; margin-bottom: 1rem; position: relative; z-index: 1; line-height: 1.15; }
+    .cta-section h2 em { font-style: italic; color: var(--pink); }
+    .cta-section p { font-size: 0.95rem; color: rgba(255,255,255,0.4); font-weight: 300; margin-bottom: 2.5rem; position: relative; z-index: 1; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* FOOTER */
+    footer { background: #080810; color: rgba(255,255,255,0.35); padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 3px solid var(--pink); }
+    footer .f-logo { text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+    footer .f-logo img { height: 32px; opacity: 0.8; }
+    footer .f-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; background: linear-gradient(90deg, var(--cyan), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    footer p { font-size: 0.75rem; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cyan); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .hero-split .split-badge { display: none; }
+      .adv-grid { grid-template-columns: 1fr 1fr; }
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-divider { display: none; }
+      .photo-section { grid-template-columns: 1fr 1fr; height: auto; }
+      .photo-item { height: 240px; }
+      .photo-section .photo-item:last-child { grid-column: span 2; }
+      .gls { grid-template-columns: 1fr; gap: 3rem; }
+      .docs { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 600px) {
+      .adv-grid { grid-template-columns: 1fr; }
+      .docs-cards { grid-template-columns: 1fr; }
+      .photo-section { grid-template-columns: 1fr; }
+      .photo-section .photo-item:last-child { grid-column: span 1; }
+      .photo-item { height: 220px; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+      <span class="nav-logo-text">To Base</span>
+    </a>
+    <a href="index.html#usluge" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Sve usluge
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-split">
+      <div class="hero-split-left"></div>
+      <div class="hero-split-right"></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="split-badge left"><span>GLS čelična konstrukcija</span></div>
+    <div class="split-badge right"><span>Završeni objekt</span></div>
+
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">To Base</a> <span>›</span> <span>Usluge</span> <span>›</span> <span>Montažna gradnja</span>
+      </div>
+      <div class="service-tag">Usluga 06 · GLS metalna konstrukcija</div>
+      <h1>Montažna<br><em>gradnja</em> — brže,<br><span>povoljnije</span>, bolje</h1>
+      <div class="hero-stats">
+        <div class="hstat"><span class="n">≤12 mj.</span><span class="l">Od kupnje terena do ključa</span></div>
+        <div class="hstat"><span class="n">2–3 mj.</span><span class="l">Samo montaža objekta</span></div>
+        <div class="hstat"><span class="n">A+</span><span class="l">Energetska učinkovitost</span></div>
+      </div>
+      <div class="cta-row">
+        <a href="index.html#kontakt" class="btn-primary">Zatražite konzultaciju</a>
+        <a href="#process" class="btn-outline">Pogledajte proces →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <div class="main-adv">
+    <div class="main-adv-icon">💡</div>
+    <div class="main-adv-text">
+      <strong>Glavna prednost: cjenovno povoljnija gradnja od tradicionalne</strong>
+      <span>GLS metalna konstrukcija smanjuje troškove radova, drastično skraćuje rokove i eliminira probleme s vlagom — uz jednaku ili veću čvrstoću od klasične gradnje.</span>
+    </div>
+  </div>
+
+  <!-- ADVANTAGES -->
+  <section class="advantages">
+    <div class="adv-header">
+      <div class="section-label">Zašto montažna gradnja</div>
+      <h2 class="section-title">Prednosti <em>suhe gradnje</em><br>nad tradicionalnom</h2>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <span class="adv-icon">⚡</span>
+        <h3>Brzina gradnje</h3>
+        <p>Od kupnje terena do useljenja — maksimalno godinu dana. Sama montaža objekta na pripremljenom terenu s ishodovanim dozvolama traje samo 2 do 3 mjeseca.</p>
+        <span class="adv-highlight">3× brže od klasične gradnje</span>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">💰</span>
+        <h3>Niži troškovi gradnje</h3>
+        <p>Suha montaža znači manje radne snage, kraće trajanje gradilišta i manje otpadnog materijala. Ukupna investicija je značajno niža uz istu ili veću kvalitetu.</p>
+        <span class="adv-highlight" style="color:var(--pink);">Povoljnije od tradicionane gradnje</span>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🌡️</span>
+        <h3>Energetska učinkovitost</h3>
+        <p>GLS konstrukcija s modernom toplinskom izolacijom postiže visoke energetske razrede. Niži računi za grijanje i hlađenje kroz cijeli životni vijek objekta.</p>
+        <span class="adv-highlight">Energetski razred A i A+</span>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">💧</span>
+        <h3>Otpornost na vlagu</h3>
+        <p>Za razliku od tradicionalne gradnje, čelik i suhi elementi ne upijaju vlagu i ne skupljaju plijesan. Nema čekanja da "objekt prosuši" — odmah se useljavate.</p>
+        <span class="adv-highlight" style="color:var(--pink);">Bez plijesni i kondenzacije</span>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🔧</span>
+        <h3>Fleksibilnost prostora</h3>
+        <p>Unutarnje pregrađivanje i modifikacije prostorija moguće su u bilo kojoj fazi — nosiva konstrukcija je vanjski skelet, unutarnji raspored je slobodan.</p>
+        <span class="adv-highlight">Lagane preinake u budućnosti</span>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🏗️</span>
+        <h3>Višekatna gradnja</h3>
+        <p>GLS metalna konstrukcija nosi višekatne objekte bez problema. Prizemlje, kat, potkrovlje — sve izvedivo uz iste prednosti brzine i preciznosti montažne gradnje.</p>
+        <span class="adv-highlight" style="color:var(--pink);">P+1, P+2 i više katova</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VS -->
+  <section class="comparison">
+    <div class="comparison-header">
+      <div class="section-label">Usporedba</div>
+      <h2 class="section-title">Montažna <em>vs</em> tradicional gradnja</h2>
+    </div>
+    <div class="vs-grid">
+      <div class="vs-col montazna">
+        <div class="vs-col-title">✦ Montažna gradnja (GLS)</div>
+        <ul class="vs-items">
+          <li class="vs-item">Montaža objekta 2–3 mjeseca</li>
+          <li class="vs-item">Do godinu dana od terena do ključa</li>
+          <li class="vs-item">Cjenovno povoljnije — niži ukupni troškovi</li>
+          <li class="vs-item">Nema vlage ni čekanja na sušenje</li>
+          <li class="vs-item">Visoka energetska učinkovitost (A, A+)</li>
+          <li class="vs-item">Slobodan raspored unutarnjih prostorija</li>
+          <li class="vs-item">Tvorničke precizno izrađeni elementi</li>
+          <li class="vs-item">Manje otpadnog materijala — eko gradnja</li>
+          <li class="vs-item">Višekatna gradnja bez problema</li>
+        </ul>
+      </div>
+      <div class="vs-divider"><div class="vs-circle">VS</div></div>
+      <div class="vs-col tradicional">
+        <div class="vs-col-title">Tradicional gradnja (beton / opeka)</div>
+        <ul class="vs-items">
+          <li class="vs-item">Gradnja traje 2–4 godine</li>
+          <li class="vs-item">Dulje od 2 godine od početka do ključa</li>
+          <li class="vs-item">Viši troškovi radne snage i materijala</li>
+          <li class="vs-item">Vlaženje i sušenje = gubitak vremena</li>
+          <li class="vs-item">Energetska učinkovitost ovisna o izvedbi</li>
+          <li class="vs-item">Pregrađivanje zahtijeva rušenje zidova</li>
+          <li class="vs-item">Ovisno o vještini zidara na terenu</li>
+          <li class="vs-item">Veće količine otpada</li>
+          <li class="vs-item">Višekatno moguće, ali skuplje i sporije</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <div class="photo-section">
+    <div class="photo-item">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="GLS čelična konstrukcija" />
+      <div class="photo-label"><span>GLS čelična konstrukcija</span></div>
+    </div>
+    <div class="photo-item">
+      <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80" alt="Montaža na terenu" />
+      <div class="photo-label"><span>Montaža na terenu</span></div>
+    </div>
+    <div class="photo-item">
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Završeni objekt" />
+      <div class="photo-label"><span>Završeni objekt — ključ u ruke</span></div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="process-header">
+      <div class="section-label">Naš proces</div>
+      <h2 class="section-title">Od ideje do <em>ključa u ruke</em></h2>
+      <p style="font-size:0.9rem; color:var(--warm-grey); font-weight:300; margin-top:0.8rem; max-width:580px;">Vodimo cijeli projekt — od pronalaska lokacije do predaje gotovog objekta s kompletnom dokumentacijom.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">01</div>
+        <div class="timeline-time">Faza 1 · tjedan 1–4</div>
+        <h3>Pronalazak ili procjena terena</h3>
+        <p>Pomažemo pri pronalasku odgovarajućeg građevinskog terena ili procjenjujemo postojeći teren klijenta. Analiziramo uvjete gradnje, lokacijske dozvole i regulativu za željenu namjenu objekta — stambenu, turističku ili poslovnu.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">02</div>
+        <div class="timeline-time">Faza 2 · tjedan 4–12</div>
+        <h3>Projekt prema željama vlasnika</h3>
+        <p>Izrađujemo projekt prema mjerama i željama klijenta, u skladu s uvjetima gradnje i zakonskim normama. Svaki objekt je jedinstven i prilagođen namjeni. Proporcije, raspored prostorija, broj katova — sve po vašim zahtjevima.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">03</div>
+        <div class="timeline-time">Faza 3 · tjedan 8–20</div>
+        <h3>Ishodovanje dozvola i dokumentacije</h3>
+        <p>Vodimo postupak ishođenja svih potrebnih dozvola — lokacijska, građevinska i ostale potrebne suglasnosti. Surađujemo s ovlaštenim projektantima i tijelima lokalne uprave da cijeli proces teče glatko.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">04</div>
+        <div class="timeline-time">Faza 4 · tjedan 16–28</div>
+        <h3>Iskop i priprema terena</h3>
+        <p>Skupljamo i uspoređujemo ponude za iskop i pripremu temelja. Koordiniramo odabir najpovoljnijeg izvođača i pratimo izvedbu svih pripremnih radova — temeljenje, instalacije, komunalna infrastruktura.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">05</div>
+        <div class="timeline-time">Faza 5 · tjedan 28–40</div>
+        <h3>Montaža GLS konstrukcije</h3>
+        <p>Tvorničke precizno izrađeni GLS čelični elementi dovažaju se na teren i montiraju. Sama montaža traje 2 do 3 mjeseca — neovisno o vremenskim uvjetima, bez mokrog procesaa i čekanja.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">06</div>
+        <div class="timeline-time">Faza 6 · tjedan 36–48</div>
+        <h3>Završni radovi — ključ u ruke</h3>
+        <p>Fasada, unutarnje uređenje, instalacije, priključci — pratimo sve završne radove do finalne predaje. Objekt predajemo u fazi ključ u ruke, spreman za useljenje ili otvaranje.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">07</div>
+        <div class="timeline-time">Faza 7 · završno</div>
+        <h3>Katalog objekta — hodogramska dokumentacija</h3>
+        <p>Dokumentiramo i fotografiramo cijeli proces gradnje od prvog do posljednjeg dana. Na kraju ispostavljamo kompletnu hodogramsku dokumentaciju u vidu "kataloga" izgrađenog objekta — sve faze, tehnički nacrti, instalacijske sheme i fotografije.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLS TECH -->
+  <section class="gls">
+    <div class="gls-text">
+      <div class="section-label">Tehnologija · isključivo koristimo</div>
+      <h2>GLS — galvanizirana<br><em>čelična konstrukcija</em></h2>
+      <p>Radimo isključivo s GLS (Galvanized Light Steel) metalnom konstrukcijom — galvaniziranim čeličnim profilima visoke čvrstoće koji se tvorničke precizno izrađuju za svaki projekt pojedinačno.</p>
+      <p>Za razliku od drvenih montažnih kuća, GLS čelik ne gori, ne truli, ne skuplja vlagu i ne mijenja dimenzije. Idealan je za mediteransku klimu i zahtjevne terene Kvarnera i Dalmacije.</p>
+      <ul class="gls-specs">
+        <li><span class="spec-icon">🔩</span><span>Galvanizirani čelični profili — trajna zaštita od korozije</span></li>
+        <li><span class="spec-icon">🏠</span><span>Mogućnost izgradnje P+1, P+2 i više katova</span></li>
+        <li><span class="spec-icon">📐</span><span>Tvorničke prefabricirani elementi — preciznost do milimetra</span></li>
+        <li><span class="spec-icon">🔥</span><span>Otpornost na vatru i vlagu — bez truljenja</span></li>
+        <li><span class="spec-icon">🌬️</span><span>Nema skupljanja ni deformacija s temperaturom</span></li>
+        <li><span class="spec-icon">🌍</span><span>Reciklabilni materijal — ekološki prihvatljiva gradnja</span></li>
+      </ul>
+    </div>
+    <div class="gls-visual">
+      <img class="gls-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="GLS metalna konstrukcija" />
+      <div class="gls-badge">
+        <div class="b-title">Isključivo koristimo</div>
+        <div class="b-text">GLS galvanizirana čelična konstrukcija</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTATION -->
+  <section class="docs">
+    <div>
+      <div class="section-label">Dokumentacija</div>
+      <h2 class="section-title">Katalog <em>vašeg objekta</em></h2>
+      <p style="font-size:0.92rem; color:var(--warm-grey); font-weight:300; line-height:1.75; margin-top:1rem; margin-bottom:1.5rem;">
+        Svaki projekt dokumentiramo od prvog do posljednjeg dana. Na kraju gradnje ispostavljamo kompletnu hodogramsku dokumentaciju — profesionalni "katalog" vašeg objekta koji sadrži sve faze gradnje, materijale, nacrte i fotografije.
+      </p>
+      <a href="index.html#kontakt" class="btn-primary">Pokrenite projekt →</a>
+    </div>
+    <div class="docs-cards">
+      <div class="doc-card">
+        <div class="doc-card-icon">📸</div>
+        <h4>Fotografska dokumentacija</h4>
+        <p>Profesionalno fotografirana svaka faza gradnje — od iskopa do predaje.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">📐</div>
+        <h4>Tehnički nacrti</h4>
+        <p>Kompletan set nacrta, tlocrta i instalacijskih shema objekta.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">📋</div>
+        <h4>Hodogram projekta</h4>
+        <p>Kronološki pregled svih faza, datuma i izvođača radova.</p>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">🏅</div>
+        <h4>Certifikati i suglasnosti</h4>
+        <p>Sve dozvole, energetski certifikati i završne suglasnosti u jednom katalogu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Izgradite pametnije —<br><em>brže i povoljnije</em></h2>
+    <p>Besplatna konzultacija. Procjena terena. Projektiranje prema vašim željama.</p>
+    <div class="cta-btns">
+      <a href="index.html#kontakt" class="btn-primary">Zatražite konzultaciju</a>
+      <a href="index.html#usluge" class="btn-outline">Ostale usluge</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" class="f-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+      <span class="f-logo-text">To Base</span>
+    </a>
+    <p>© 2025 To Base d.o.o. · Opatija, Hrvatska</p>
+    <a href="index.html#kontakt">Kontakt</a>
+  </footer>
+
+  <script>
+    const items = document.querySelectorAll('.timeline-item');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posredovanje u nekretninama – To Base</title>
+  <meta name="description" content="Više od 300 uspješnih kupoprodaja. Pratimo cijeli proces – od savjetovanja do potpisa ugovora. Stanovi, kuće, zemljišta, turistički objekti." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d14;
+      --cyan: #00c4cc;
+      --pink: #ff2d8a;
+      --cyan-dim: rgba(0,196,204,0.1);
+      --pink-dim: rgba(255,45,138,0.08);
+      --warm-grey: #8a8a9a;
+      --off-white: #f7f7fc;
+      --surface: #ffffff;
+      --border: rgba(0,196,204,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5vw;
+      background: rgba(247,247,252,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 58px;
+      width: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .nav-logo:hover img { transform: scale(1.06); }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--warm-grey);
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--cyan); }
+
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 9rem 5vw 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, var(--cyan-dim), var(--pink-dim));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+
+    .breadcrumb a { color: var(--cyan); text-decoration: none; }
+    .breadcrumb span { color: var(--warm-grey); }
+
+    .service-tag {
+      display: inline-block;
+      background: var(--pink-dim);
+      color: var(--pink);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255,45,138,0.2);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s forwards;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--pink); }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--warm-grey);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .stat-pill {
+      text-align: center;
+    }
+
+    .stat-pill .n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--cyan);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-pill .l {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-top: 0.2rem;
+      display: block;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--cyan); color: var(--ink); transform: translateY(-1px); }
+
+    /* ── HERO IMAGE ── */
+    .hero-images {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 0.9s 0.5s forwards;
+    }
+
+    .img-stack {
+      position: relative;
+      height: 480px;
+    }
+
+    .img-main {
+      position: absolute;
+      top: 0; right: 0;
+      width: 85%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .img-second {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 55%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      border: 4px solid var(--surface);
+    }
+
+    /* ── SERVICES DETAIL ── */
+    .detail {
+      padding: 6rem 5vw;
+      background: var(--surface);
+    }
+
+    .detail-intro {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .section-title em { font-style: italic; color: var(--pink); }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .svc-item {
+      background: var(--off-white);
+      border-radius: 2px;
+      padding: 2.2rem 2rem;
+      border-top: 3px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .svc-item:hover {
+      border-top-color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,196,204,0.08);
+    }
+
+    .svc-icon {
+      width: 44px; height: 44px;
+      background: var(--cyan-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.3rem;
+    }
+
+    .svc-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .svc-item p {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 6rem 5vw;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 50%; height: 150%;
+      background: radial-gradient(ellipse, rgba(0,196,204,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .process::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; right: -10%;
+      width: 40%; height: 100%;
+      background: radial-gradient(ellipse, rgba(255,45,138,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative; z-index: 1;
+    }
+
+    .process-header .section-label { color: var(--cyan); }
+
+    .process-header .section-title { color: #fff; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative; z-index: 1;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 10%;
+      width: 80%; height: 1px;
+      background: linear-gradient(90deg, var(--cyan), var(--pink));
+      opacity: 0.3;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    .step-num {
+      width: 56px; height: 56px;
+      background: var(--ink);
+      border: 1.5px solid var(--cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--cyan);
+      position: relative; z-index: 1;
+    }
+
+    .step:nth-child(even) .step-num {
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+
+    .step h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    /* ── TYPES / PHOTO GALLERY ── */
+    .gallery {
+      padding: 6rem 5vw;
+      background: var(--off-white);
+    }
+
+    .gallery-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .gallery-sub {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+      font-weight: 300;
+      margin-top: 0.8rem;
+    }
+
+    .partner-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding: 0.9rem 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      width: fit-content;
+    }
+
+    .partner-badge-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+    }
+
+    .partner-badge-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--cyan);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s, gap 0.2s;
+    }
+
+    .partner-badge-link:hover { color: var(--pink); gap: 0.6rem; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      background: #e0e0e8;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    /* Zemljišta — panorama full-width strip */
+    .gallery-item.panorama {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      height: 160px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,196,204,0.15), rgba(255,45,138,0.15));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(13,13,20,0.85));
+      padding: 2.5rem 1.2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 1;
+    }
+
+    /* Panorama label — centered, large title */
+    .gallery-item.panorama .gallery-label {
+      background: linear-gradient(transparent, rgba(13,13,20,0.75));
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+    }
+
+    .gl-title {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Large panorama title */
+    .gallery-item.panorama .gl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 1;
+    }
+
+    .gallery-item.panorama .gl-title em {
+      font-style: italic;
+      color: var(--cyan);
+    }
+
+    .gl-cta {
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .gallery-item:hover .gl-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Panorama CTA always slightly visible */
+    .gallery-item.panorama .gl-cta {
+      opacity: 0.6;
+      transform: translateY(0);
+      font-size: 0.8rem;
+      align-self: flex-end;
+    }
+
+    .gallery-item.panorama:hover .gl-cta {
+      opacity: 1;
+    }
+
+    /* ── ROI SECTION ── */
+    .roi {
+      padding: 5rem 5vw;
+      background: var(--surface);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .roi-text .section-label { margin-bottom: 0.6rem; }
+
+    .roi-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .roi-text h2 em { font-style: italic; color: var(--cyan); }
+
+    .roi-text p {
+      font-size: 0.95rem;
+      color: var(--warm-grey);
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .roi-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .roi-card {
+      background: var(--off-white);
+      border-radius: 2px;
+      padding: 1.8rem 1.5rem;
+      border-left: 3px solid var(--cyan);
+    }
+
+    .roi-card:nth-child(2) { border-left-color: var(--pink); }
+    .roi-card:nth-child(3) { border-left-color: var(--pink); }
+    .roi-card:nth-child(4) { border-left-color: var(--cyan); }
+
+    .roi-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .roi-card p {
+      font-size: 0.82rem;
+      color: var(--warm-grey);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ── CTA BOTTOM ── */
+    .cta-section {
+      padding: 6rem 5vw;
+      background: var(--ink);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0,196,204,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+
+    .cta-section h2 em { font-style: italic; color: var(--pink); }
+
+    .cta-section p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      position: relative; z-index: 1;
+    }
+
+    .cta-section .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      text-decoration: none;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      border: 1px solid var(--cyan);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--cyan); color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080810;
+      color: rgba(255,255,255,0.35);
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 3px solid var(--pink);
+    }
+
+    footer .f-logo img { height: 32px; opacity: 0.8; }
+    footer .f-logo { text-decoration: none; display: flex; }
+
+    footer p { font-size: 0.75rem; }
+
+    footer a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--cyan); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 7rem; gap: 2.5rem; }
+      .img-stack { height: 300px; }
+      .img-main { width: 90%; height: 260px; }
+      .img-second { width: 50%; height: 180px; }
+      .services-list { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .steps::before { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: span 1; }
+      .gallery-item.panorama { height: 130px; }
+      .gallery-item.panorama .gallery-label { padding: 1rem 1.5rem; }
+      .gallery-item.panorama .gl-title { font-size: clamp(1.4rem, 3vw, 2rem); }
+      .roi { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 600px) {
+      .services-list { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.panorama { height: 110px; }
+      .gallery-item.panorama .gl-title { font-size: 1.6rem; }
+      .roi-cards { grid-template-columns: 1fr; }
+      .stat-row { gap: 1.5rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+      <span class="nav-logo-text">To Base</span>
+    </a>
+    <a href="index.html#usluge" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Sve usluge
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">To Base</a>
+        <span>›</span>
+        <span>Usluge</span>
+        <span>›</span>
+        <span>Nekretnine</span>
+      </div>
+      <div class="service-tag">Usluga 01</div>
+      <h1>Posredovanje u<br><em>nekretninama</em></h1>
+      <p class="hero-lead">
+        Više od 300 uspješnih kupoprodaja. Od prvog razgovora do potpisa ugovora —
+        pratimo vas kroz svaki korak, bez iznimke.
+      </p>
+      <div class="stat-row">
+        <div class="stat-pill">
+          <span class="n">300+</span>
+          <span class="l">Kupoprodaja</span>
+        </div>
+        <div class="stat-pill">
+          <span class="n">100%</span>
+          <span class="l">Praćenje procesa</span>
+        </div>
+        <div class="stat-pill">
+          <span class="n">2-strano</span>
+          <span class="l">Zastupanje</span>
+        </div>
+      </div>
+      <div class="cta-row">
+        <a href="index.html#kontakt" class="btn-primary">Zatražite savjetovanje</a>
+      </div>
+    </div>
+
+    <div class="hero-images">
+      <div class="img-stack">
+        <img class="img-main"
+          src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80"
+          alt="Luksuzna nekretnina na Kvarneru" />
+        <img class="img-second"
+          src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80"
+          alt="Moderni apartman" />
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES DETAIL -->
+  <section class="detail">
+    <div class="detail-intro">
+      <div class="section-label">Što nudimo</div>
+      <h2 class="section-title">Cjelovita usluga za<br><em>kupce i prodavače</em></h2>
+    </div>
+
+    <div class="services-list">
+      <div class="svc-item">
+        <div class="svc-icon">🏠</div>
+        <h3>Stambene nekretnine</h3>
+        <p>Stanovi, kuće i vile — pronalazimo pravu nekretninu za vaš životni stil ili je prezentiramo pravim kupcima. Opatija, Rijeka, Kvarner i šira regija.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon">🌿</div>
+        <h3>Zemljišta i građevinski projekti</h3>
+        <p>Građevinska i poljoprivredna zemljišta, potencijali za razvoj — analiziramo lokaciju, uvjete gradnje i regulativu za vas.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon">🏨</div>
+        <h3>Turistički objekti</h3>
+        <p>Apartmanske kuće, hoteli, pansioni i turističke vile. Savjetujemo o sezonskom prinosu, ROI i potencijalu za kratkoročni najam.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon">🏢</div>
+        <h3>Poslovni i komercijalni prostori</h3>
+        <p>Uredi, lokali, skladišta, zgrade. Pratimo potrebe vaše tvrtke — od prvog obilaska do useljenja ili prodaje.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon">👤</div>
+        <h3>Zastupanje kupca</h3>
+        <p>Radimo isključivo za vas kao kupca — tražimo, filtriramo i pregovaramo u vašem interesu. Vi se fokusirate na odabir, mi na sve ostalo.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon">🔑</div>
+        <h3>Zastupanje vlasnika</h3>
+        <p>Prezentacija nekretnine, fotografija, marketing, selekcija kupaca i pregovaranje — sve u cilju najboljeg mogućeg ishoda za prodavača.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STEPS -->
+  <section class="process">
+    <div class="process-header">
+      <div class="section-label">Kako radimo</div>
+      <h2 class="section-title" style="color:#fff;">Od ideje do <em>potpisa ugovora</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Savjetovanje</h4>
+        <p>Upoznajemo vaše potrebe, budžet i ciljeve. Definiramo strategiju zajedno.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Obilaski i selekcija</h4>
+        <p>Organiziramo obilaske, filtriramo ponudu i pratimo vas na svim pregledima nekretnina.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Analiza i ROI</h4>
+        <p>Izračunavamo investicijski prinos, kreditnu sposobnost i dugoročni potencijal nekretnine.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Dokumentacija</h4>
+        <p>Ishodujemo svu potrebnu dokumentaciju, provjeravamo vlasništvo i rješavamo pravne prepreke.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <h4>Ugovor i zatvaranje</h4>
+        <p>U suradnji s odvjetničkim partnerom izrađujemo ugovor i pratimo prijenos vlasništva do kraja.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery-header">
+      <div class="section-label">Tipovi nekretnina</div>
+      <h2 class="section-title">Što možemo <em>pronaći za vas</em></h2>
+      <p class="gallery-sub">Kliknite na kategoriju za pregled dostupnih nekretnina u suradnji s našim partnerom.</p>
+    </div>
+
+    <div class="partner-badge">
+      <span class="partner-badge-label">Partnerska agencija</span>
+      <a href="https://java-nekretnine.hr" target="_blank" rel="noopener" class="partner-badge-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        java-nekretnine.hr
+      </a>
+    </div>
+
+    <div class="gallery-grid">
+      <a href="https://java-nekretnine.hr/listings/results?price_from=1000000&page=1" target="_blank" rel="noopener" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80" alt="Luksuzne nekretnine" />
+        <div class="gallery-label">
+          <span class="gl-title">Luksuzne nekretnine</span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+      <a href="https://java-nekretnine.hr/listings/results?id_category=2948" target="_blank" rel="noopener" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Obiteljske kuće" />
+        <div class="gallery-label">
+          <span class="gl-title">Obiteljske kuće</span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+      <a href="https://java-nekretnine.hr" target="_blank" rel="noopener" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80" alt="Turistički objekti" />
+        <div class="gallery-label">
+          <span class="gl-title">Turistički objekti</span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+      <a href="https://java-nekretnine.hr/listings/results?id_category=2946" target="_blank" rel="noopener" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt="Stanovi" />
+        <div class="gallery-label">
+          <span class="gl-title">Stanovi</span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+      <a href="https://java-nekretnine.hr/listings/results?id_category=2949" target="_blank" rel="noopener" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Poslovni prostori" />
+        <div class="gallery-label">
+          <span class="gl-title">Poslovni prostori</span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+      <!-- ZEMLJIŠTA — panorama full-width strip -->
+      <a href="https://java-nekretnine.hr/listings/results?id_category=2950" target="_blank" rel="noopener" class="gallery-item panorama">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80" alt="Zemljišta" style="object-position: center 60%;" />
+        <div class="gallery-label">
+          <span class="gl-title"><em>Zemljišta</em></span>
+          <span class="gl-cta">Pregledaj ponudu →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ROI / INVESTMENT -->
+  <section class="roi">
+    <div class="roi-text">
+      <div class="section-label">Investicijsko savjetovanje</div>
+      <h2>Kupnja kao <em>investicija</em> —<br>znamo izračunati prinos</h2>
+      <p>
+        Kupnja nekretnine nije samo dom — često je to financijska odluka koja treba biti potkrijepljena
+        jasnim brojevima. Naš tim izračunava ROI, procjenjuje tržišnu vrijednost i savjetuje o
+        optimalnom trenutku za ulazak na tržište.
+      </p>
+      <p>
+        U suradnji s kreditnim partnerima pomažemo pri odabiru najpovoljnijeg financiranja —
+        od početnog pregleda kreditne sposobnosti do završnih pregovora s bankom.
+      </p>
+    </div>
+    <div class="roi-cards">
+      <div class="roi-card">
+        <h4>ROI analiza</h4>
+        <p>Izračun godišnjeg prinosa za investicijske nekretnine i kratkoročni najam.</p>
+      </div>
+      <div class="roi-card">
+        <h4>Kreditno savjetovanje</h4>
+        <p>Posredovanje s bankarskim i kreditnim partnerima za najpovoljnije uvjete.</p>
+      </div>
+      <div class="roi-card">
+        <h4>Pravna zaštita</h4>
+        <p>Odvjetnički partner provjerava svaki ugovor i štiti vaše interese.</p>
+      </div>
+      <div class="roi-card">
+        <h4>Ishodovanje dokumentacije</h4>
+        <p>Vlasnički listovi, dozvole, energetski certifikati — mi to rješavamo umjesto vas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Pronađimo zajedno<br>vašu <em>idealnu nekretninu</em></h2>
+    <p>Besplatno savjetovanje. Bez obaveza. Samo razgovor o vašim potrebama.</p>
+    <div class="cta-btns">
+      <a href="index.html#kontakt" class="btn-primary">Zatražite poziv</a>
+      <a href="index.html#usluge" class="btn-outline">Ostale usluge</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="f-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+    </a>
+    <p>© 2025 To Base d.o.o. · Opatija, Hrvatska</p>
+    <a href="index.html#kontakt">Kontakt</a>
+  </footer>
+
+</body>
+</html>

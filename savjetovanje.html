@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savjetovanje i poslovni razvoj – To Base</title>
+  <meta name="description" content="Savjetovanje pri investiranju u nekretnine – kreacija plana, izračun investicije, opcije i količina dobiti. To Base d.o.o., Opatija." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0d0d14; --cyan: #00c4cc; --pink: #ff2d8a;
+      --cyan-dim: rgba(0,196,204,0.1); --pink-dim: rgba(255,45,138,0.08);
+      --warm-grey: #8a8a9a; --off-white: #f7f7fc; --surface: #fff;
+      --border: rgba(0,196,204,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--ink); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5vw; background: rgba(247,247,252,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .nav-logo img { height: 58px; width: auto; transition: transform 0.2s; }
+    .nav-logo:hover img { transform: scale(1.06); }
+    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--warm-grey); transition: color 0.2s; }
+    .nav-back:hover { color: var(--cyan); }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-back svg { transition: transform 0.2s; }
+
+    /* HERO */
+    .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(13,13,20,0.25) 0%, rgba(13,13,20,0.88) 100%),
+        url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1600&q=80') center/cover;
+    }
+    .hero-content { position: relative; z-index: 2; padding: 3rem 5vw 5rem; width: 100%; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; }
+    .breadcrumb a { color: var(--cyan); text-decoration: none; }
+    .service-tag { display: inline-block; background: rgba(0,196,204,0.12); color: var(--cyan); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 20px; margin-bottom: 1.2rem; border: 1px solid rgba(0,196,204,0.25); opacity: 0; animation: fadeUp 0.7s 0.2s forwards; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 6rem); font-weight: 300; line-height: 1.05; color: #fff; margin-bottom: 1.5rem; max-width: 800px; opacity: 0; animation: fadeUp 0.7s 0.3s forwards; }
+    .hero h1 em { font-style: italic; color: var(--cyan); }
+    .hero h1 span { color: var(--pink); }
+    .hero-desc { font-size: 1rem; color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.7; max-width: 560px; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; }
+
+    .btn-primary { background: var(--pink); color: #fff; text-decoration: none; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s, transform 0.2s; display: inline-block; }
+    .btn-primary:hover { background: var(--cyan); color: var(--ink); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--cyan); text-decoration: none; padding: 0.85rem 1.8rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px; border: 1px solid rgba(0,196,204,0.5); transition: all 0.2s; display: inline-block; }
+    .btn-outline:hover { background: var(--cyan); color: var(--ink); }
+
+    /* SECTION COMMONS */
+    .section-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+    .section-title em { font-style: italic; color: var(--pink); }
+
+    /* INTRO STRIP */
+    .intro-strip { background: var(--surface); padding: 4rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .intro-strip p { font-size: 0.95rem; color: var(--warm-grey); font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
+    .intro-strip p:last-child { margin-bottom: 0; }
+    .intro-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .intro-num { text-align: center; padding: 1.5rem 1rem; background: var(--off-white); border-radius: 2px; border-bottom: 3px solid var(--cyan); }
+    .intro-num:nth-child(even) { border-bottom-color: var(--pink); }
+    .intro-num .n { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--cyan); display: block; line-height: 1; }
+    .intro-num:nth-child(even) .n { color: var(--pink); }
+    .intro-num .l { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-top: 0.4rem; display: block; }
+
+    /* SERVICES GRID */
+    .services { padding: 6rem 5vw; background: var(--off-white); }
+    .services-header { margin-bottom: 3.5rem; }
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .svc-card { background: var(--surface); border-radius: 2px; padding: 2.5rem 2rem; border-top: 3px solid transparent; transition: border-top-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+    .svc-card::before { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle at top right, var(--cyan-dim), transparent 70%); }
+    .svc-card:nth-child(even)::before { background: radial-gradient(circle at top right, var(--pink-dim), transparent 70%); }
+    .svc-card:hover { border-top-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,196,204,0.08); }
+    .svc-card:nth-child(even):hover { border-top-color: var(--pink); }
+    .svc-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display: block; }
+    .svc-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--ink); margin-bottom: 0.8rem; }
+    .svc-card p { font-size: 0.88rem; color: var(--warm-grey); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
+    .svc-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .svc-card ul li { font-size: 0.82rem; color: var(--ink); font-weight: 300; padding-left: 1rem; position: relative; line-height: 1.5; }
+    .svc-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--cyan); font-size: 0.75rem; }
+    .svc-card:nth-child(even) ul li::before { color: var(--pink); }
+
+    /* INVESTMENT PROCESS */
+    .inv-process { padding: 6rem 5vw; background: var(--surface); }
+    .inv-process-header { margin-bottom: 4rem; max-width: 600px; }
+    .inv-process-header p { font-size: 0.9rem; color: var(--warm-grey); font-weight: 300; line-height: 1.75; margin-top: 0.8rem; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, var(--cyan), var(--pink)); z-index: 0; }
+    .step { text-align: center; padding: 0 1rem; position: relative; z-index: 1; }
+    .step-dot { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--cyan); position: relative; z-index: 1; transition: background 0.3s, color 0.3s; }
+    .step:nth-child(even) .step-dot { border-color: var(--pink); color: var(--pink); }
+    .step:hover .step-dot { background: var(--cyan); color: #fff; }
+    .step:nth-child(even):hover .step-dot { background: var(--pink); }
+    .step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+    .step p { font-size: 0.78rem; color: var(--warm-grey); font-weight: 300; line-height: 1.55; }
+
+    /* ROI SECTION */
+    .roi { padding: 6rem 5vw; background: var(--ink); position: relative; overflow: hidden; }
+    .roi::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(0,196,204,0.06) 0%, transparent 60%); }
+    .roi-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
+    .roi-text .section-label { color: var(--cyan); }
+    .roi-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: #fff; line-height: 1.2; margin: 0.8rem 0 1.5rem; }
+    .roi-text h2 em { font-style: italic; color: var(--pink); }
+    .roi-text p { font-size: 0.92rem; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.75; margin-bottom: 1rem; }
+    .roi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .roi-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 2px; padding: 1.5rem 1.2rem; transition: border-color 0.3s, background 0.3s; }
+    .roi-card:hover { border-color: rgba(0,196,204,0.3); background: rgba(0,196,204,0.05); }
+    .roi-card:nth-child(even):hover { border-color: rgba(255,45,138,0.3); background: rgba(255,45,138,0.04); }
+    .roi-card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .roi-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: #fff; margin-bottom: 0.4rem; }
+    .roi-card p { font-size: 0.78rem; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.5; margin: 0; }
+
+    /* CTA */
+    .cta-section { padding: 7rem 5vw; background: var(--off-white); text-align: center; }
+    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 300; color: var(--ink); margin-bottom: 1rem; line-height: 1.15; }
+    .cta-section h2 em { font-style: italic; color: var(--pink); }
+    .cta-section p { font-size: 0.95rem; color: var(--warm-grey); font-weight: 300; margin-bottom: 2.5rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: #080810; color: rgba(255,255,255,0.35); padding: 2rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 3px solid var(--pink); }
+    footer .f-logo { text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+    footer .f-logo img { height: 32px; opacity: 0.8; }
+    footer .f-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; background: linear-gradient(90deg, var(--cyan), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    footer p { font-size: 0.75rem; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
+    footer a:hover { color: var(--cyan); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .intro-strip { grid-template-columns: 1fr; gap: 3rem; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .steps::before { display: none; }
+      .roi-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      .roi-cards { grid-template-columns: 1fr; }
+      .intro-nums { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+      <span class="nav-logo-text">To Base</span>
+    </a>
+    <a href="index.html#usluge" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Sve usluge
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">To Base</a> <span>›</span> <span>Usluge</span> <span>›</span> <span>Savjetovanje</span>
+      </div>
+      <div class="service-tag">Usluga 04 · Investicijsko savjetovanje</div>
+      <h1>Savjetovanje<br>i <em>poslovni</em><br><span>razvoj</span></h1>
+      <p class="hero-desc">
+        Od prve ideje do konkretnog plana s izračunom povrata investicije — vodimo vas kroz svaki korak odluke o ulaganju u nekretnine.
+      </p>
+      <div class="cta-row">
+        <a href="index.html#kontakt" class="btn-primary">Zatražite savjetovanje</a>
+        <a href="#savjetovanje" class="btn-outline">Što nudimo →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro-strip">
+    <div>
+      <div class="section-label">Pristup</div>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">Svaka investicija<br>zaslužuje <em>pravi plan</em></h2>
+      <p>Tržište nekretnina nudi izvrsne prilike — ali samo onima koji znaju gdje tražiti, što računati i kako pozicionirati svoju investiciju. To Base savjetovanje nije opća konzultacija: to je konkretan, personalizirani plan za vaš slučaj.</p>
+      <p>Iskustvo u zastupanju i direktnoj prodaji dalo nam je uvid u najčešće greške investitora — pretplaćena kvadratura, loša lokacija, pogrešan tip najma, nepredviđeni troškovi. Mi to znamo unaprijed.</p>
+    </div>
+    <div class="intro-nums">
+      <div class="intro-num">
+        <span class="n">15+</span>
+        <span class="l">Godina tržišnog iskustva</span>
+      </div>
+      <div class="intro-num">
+        <span class="n">100+</span>
+        <span class="l">Realiziranih projekata</span>
+      </div>
+      <div class="intro-num">
+        <span class="n">3</span>
+        <span class="l">Tržišta · HR, BIH, RS</span>
+      </div>
+      <div class="intro-num">
+        <span class="n">6</span>
+        <span class="l">Stranih jezika</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="savjetovanje">
+    <div class="services-header">
+      <div class="section-label">Što nudimo</div>
+      <h2 class="section-title">Osam područja<br><em>poslovnog savjetovanja</em></h2>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <span class="svc-icon">🏠</span>
+        <h3>Savjetovanje pri investiranju u nekretnine</h3>
+        <p>Analiza tržišta, lokacija i tipa nekretnine prilagođena vašim ciljevima — kratkoročni prihod, dugoročna vrijednost ili kombinacija oboje.</p>
+        <ul>
+          <li>Analiza potencijala lokacije i mikrolokaliteta</li>
+          <li>Usporedba stambenih, turističkih i komercijalnih nekretnina</li>
+          <li>Procjena rizika i preporuka optimalnog tipa investicije</li>
+          <li>Pregled pravnih i poreznih aspekata kupnje</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">📋</span>
+        <h3>Kreacija cjelokupnog investicijskog plana</h3>
+        <p>Strukturirani plan koji pokriva svaki aspekt investicije — od pronalaska nekretnine do strategije izlaza, u pisanom i vizualnom obliku.</p>
+        <ul>
+          <li>Definiranje investicijskog cilja i vremenskog horizonta</li>
+          <li>Plan financiranja: vlastita sredstva, kredit, partnerstvo</li>
+          <li>Strategija upravljanja nekretninom nakon kupnje</li>
+          <li>Strategija izlaza: preprodaja, najam, refinanciranje</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">📊</span>
+        <h3>Izračun investicije</h3>
+        <p>Detaljan financijski model s realnim projekcijama troškova, prihoda i povrata — bez skrivenih stavki i optimističnih pretpostavki.</p>
+        <ul>
+          <li>Ukupni troškovi nabave (cijena + porezi + provizije + renovacija)</li>
+          <li>Projekcija prihoda od najma (kratkoročni / dugoročni)</li>
+          <li>Izračun cash flow-a na godišnjoj razini</li>
+          <li>Break-even analiza i rok povrata investicije</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">💹</span>
+        <h3>Opcije i količina dobiti</h3>
+        <p>Usporedba scenarija — konzervativni, realni i optimistični — kako biste razumjeli raspon mogućih ishoda prije nego donesete odluku.</p>
+        <ul>
+          <li>Scenarij A: dugoročni najam — stabilan, predvidiv prihod</li>
+          <li>Scenarij B: turistički najam — viši prihod, veće angažiranje</li>
+          <li>Scenarij C: kupnja + renovacija + preprodaja (flip)</li>
+          <li>ROI, prinos i kapitalna dobit za svaki scenarij</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">🔍</span>
+        <h3>Nabava i sakupljanje ponuda izvođača</h3>
+        <p>Pronalazimo, kontaktiramo i filtriramo izvođače i dobavljače umjesto vas — od lokalnih specijaliziranih tvrtki do regionalnih i međunarodnih ponuđača.</p>
+        <ul>
+          <li>Identifikacija relevantnih izvođača prema vrsti projekta</li>
+          <li>Slanje upita i prikupljanje usporedivih ponuda</li>
+          <li>Analiza i usporedba uvjeta, rokova i referenci</li>
+          <li>Pregovaranje i koordinacija pred potpisivanje ugovora</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">🏭</span>
+        <h3>Pronalazak dobavljača — proizvodnja, transport i skladištenje</h3>
+        <p>Organiziramo cijeli lanac opskrbe — od pronalaska proizvođača i dogovora uvjeta, do koordinacije transporta i skladišne logistike.</p>
+        <ul>
+          <li>Sourcing proizvođača i provjera kapaciteta te certifikata</li>
+          <li>Koordinacija prijevoza: lokalni, regionalni, međunarodni</li>
+          <li>Organizacija privremenog ili trajnog skladištenja</li>
+          <li>Praćenje isporuke i upravljanje rokovima</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">🚀</span>
+        <h3>Implementacija proizvoda na tržište</h3>
+        <p>Razvijamo strategiju ulaska na tržište i pratimo vas kroz svaki korak — od pozicioniranja i distribucije do prvih prodaja i povratnih informacija.</p>
+        <ul>
+          <li>Definiranje tržišnog pozicioniranja i prodajnih kanala</li>
+          <li>Odabir i uspostava distribucijske mreže</li>
+          <li>Koordinacija lansiranja i prateće komunikacije</li>
+          <li>Praćenje rezultata i prilagodba strategije</li>
+        </ul>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">🎯</span>
+        <h3>Analiza i targeting — od ideje do krajnjeg korisnika</h3>
+        <p>Vodimo cijeli razvojni put proizvoda ili usluge — od početne ideje i analize tržišta, kroz razvoj i testiranje, sve do predaje krajnjem korisniku.</p>
+        <ul>
+          <li>Analiza tržišta i identificiranje ciljnih segmenata</li>
+          <li>Definiranje idealnog profila kupca (ICP)</li>
+          <li>Praćenje puta korisnika — od prve točke kontakta do konverzije</li>
+          <li>Optimizacija ponude na temelju tržišnih povratnih informacija</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="inv-process">
+    <div class="inv-process-header">
+      <div class="section-label">Kako radimo</div>
+      <h2 class="section-title">Proces savjetovanja<br>u <em>4 koraka</em></h2>
+      <p>Svako savjetovanje je individualno — bez predložaka, bez generičkih odgovora. Vaši ciljevi, vaš budžet, vaše mogućnosti.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">01</div>
+        <h4>Uvodni razgovor</h4>
+        <p>Upoznajemo vaše ciljeve, budžet i vremenski okvir. Besplatno, bez obveza.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">02</div>
+        <h4>Analiza i istraživanje</h4>
+        <p>Analiziramo tržište, lokacije i opcije prilagođene vašem slučaju.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">03</div>
+        <h4>Izrada plana i izračuna</h4>
+        <p>Dostavljamo pisani investicijski plan s financijskim projekcijama i scenarijima dobiti.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">04</div>
+        <h4>Provedba i podrška</h4>
+        <p>Pratimo vas kroz realizaciju — od pregovora do potpisivanja i dalje.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="roi">
+    <div class="roi-inner">
+      <div class="roi-text">
+        <div class="section-label">Zašto To Base savjetovanje</div>
+        <h2>Odluke temeljene<br>na <em>brojkama</em>,<br>ne na osjećaju</h2>
+        <p>Previše investitora kupuje na temelju "čini se dobro" — i plaća grešku godinama. Mi donosimo analitički okvir koji skida emocije iz jednadžbe.</p>
+        <p>Naše savjetovanje nije prodaja nekretnine — to je nezavisna analiza u vašem interesu.</p>
+        <a href="index.html#kontakt" class="btn-primary" style="margin-top:0.5rem; display:inline-block;">Dogovorite konzultaciju</a>
+      </div>
+      <div class="roi-cards">
+        <div class="roi-card">
+          <div class="roi-card-icon">🎯</div>
+          <h4>Personalizirano</h4>
+          <p>Svaki plan radi se isključivo za vas — bez copy-paste rješenja.</p>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">🔍</div>
+          <h4>Transparentno</h4>
+          <p>Prikazujemo i loše scenarije, ne samo one koji vam se sviđaju.</p>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">🤝</div>
+          <h4>Neovisno</h4>
+          <p>Savjetujemo u vašem interesu — nismo vezani uz određenog prodavača.</p>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card-icon">🌍</div>
+          <h4>Regionalno iskustvo</h4>
+          <p>Kvarner, Dalmacija, BIH, RS — poznajemo tržišta iznutra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Vaša investicija zaslužuje<br><em>pravi plan</em></h2>
+    <p>Besplatni uvodni razgovor. Bez obveza. Konkretni odgovori.</p>
+    <div class="cta-btns">
+      <a href="index.html#kontakt" class="btn-primary">Zatražite savjetovanje</a>
+      <a href="index.html#usluge" class="btn-outline">Ostale usluge</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="index.html" class="f-logo">
+      <img src="IMG_0138.png" alt="To Base" />
+      <span class="f-logo-text">To Base</span>
+    </a>
+    <p>© 2025 To Base d.o.o. · Opatija, Hrvatska</p>
+    <div class="footer-legal">
+      <a href="privatnost.html">Politika privatnosti</a>
+      <a href="gdpr.html">GDPR</a>
+      <a href="uvjeti.html">Uvjeti korištenja</a>
+    </div>
+  </footer>
+
+</body>
+</html>

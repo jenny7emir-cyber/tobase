@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDPR – To Base</title>
+  <meta name="description" content="GDPR informacije i prava ispitanika – To Base d.o.o." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d14;
+      --cyan: #00c4cc;
+      --pink: #ff2d8a;
+      --cyan-dim: rgba(0,196,204,0.10);
+      --warm-grey: #8a8a9a;
+      --off-white: #f7f7fc;
+      --surface: #ffffff;
+      --border: rgba(0,196,204,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 5vw;
+      background: rgba(247,247,252,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img { height: 46px; width: auto; display: block; transition: transform 0.2s; }
+    .nav-logo:hover img { transform: scale(1.06); }
+
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--cyan); }
+    .nav-back svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .page-hero {
+      background: var(--ink);
+      color: #fff;
+      padding: 5rem 5vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 50%; height: 150%;
+      background: linear-gradient(135deg, rgba(255,45,138,0.10) 0%, rgba(0,196,204,0.08) 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner { position: relative; max-width: 680px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1.2rem;
+    }
+
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-hero h1 em { font-style: italic; color: var(--cyan); }
+
+    .page-hero .meta {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.38);
+      font-weight: 300;
+    }
+
+    .content-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 5vw 7rem;
+    }
+
+    /* GDPR Rights Cards */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 2rem 0 3rem;
+    }
+
+    .right-card {
+      background: var(--surface);
+      padding: 1.8rem;
+      border-top: 3px solid transparent;
+      transition: border-top-color 0.2s;
+    }
+
+    .right-card:hover { border-top-color: var(--cyan); }
+
+    .right-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .right-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .right-card p { font-size: 0.88rem; color: var(--warm-grey); margin: 0; }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--pink);
+      padding: 2rem 2.2rem;
+      margin-bottom: 4rem;
+    }
+
+    .toc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .toc ol { padding-left: 1.2rem; }
+    .toc li { margin-bottom: 0.35rem; }
+    .toc a { color: var(--warm-grey); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .toc a:hover { color: var(--cyan); }
+
+    section.legal { margin-bottom: 3.5rem; padding-bottom: 3.5rem; border-bottom: 1px solid rgba(0,196,204,0.12); }
+    section.legal:last-of-type { border-bottom: none; }
+
+    .sec-num { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pink); margin-bottom: 0.5rem; display: block; }
+
+    h2.sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1.3rem;
+      line-height: 1.2;
+    }
+
+    p { margin-bottom: 1rem; font-size: 0.95rem; color: #2a2a35; }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { padding-left: 1.4rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; font-size: 0.95rem; color: #2a2a35; }
+    strong { color: var(--ink); font-weight: 500; }
+
+    .info-box {
+      background: var(--cyan-dim);
+      border-left: 3px solid var(--cyan);
+      padding: 1.1rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-box p { margin: 0; font-size: 0.92rem; }
+
+    .warn-box {
+      background: rgba(255,45,138,0.07);
+      border-left: 3px solid var(--pink);
+      padding: 1.1rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .warn-box p { margin: 0; font-size: 0.92rem; }
+
+    .contact-block {
+      background: var(--ink);
+      color: #fff;
+      padding: 2.5rem;
+      margin-top: 4rem;
+      border-top: 3px solid var(--cyan);
+    }
+
+    .contact-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .contact-block p { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .contact-block a { color: var(--cyan); text-decoration: none; }
+    .contact-block a:hover { text-decoration: underline; }
+
+    footer {
+      background: #080810;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 2.5rem 5vw;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    .footer-legal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-legal a { font-size: 0.72rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover, .footer-legal a.active { color: var(--cyan); }
+    .footer-links-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0.8rem 4vw; }
+      .nav-logo img { height: 38px; }
+      .nav-logo-text { font-size: 1.2rem; }
+      .page-hero { padding: 4rem 4vw 3rem; }
+      .content-wrap { padding: 3.5rem 4vw 5rem; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+      .toc { padding: 1.5rem 1.8rem; }
+      .contact-block { padding: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 5vw; }
+      .nav-logo img { height: 34px; }
+      .nav-logo-text { font-size: 1.05rem; letter-spacing: 0.13em; }
+      .nav-back span { display: none; }
+
+      .page-hero { padding: 3rem 5vw 2.5rem; }
+      .page-hero h1 { font-size: 2.2rem; }
+
+      .content-wrap { padding: 2.5rem 5vw 4rem; }
+
+      .toc { padding: 1.2rem 1.4rem; margin-bottom: 2.5rem; }
+      .toc ol { padding-left: 1rem; }
+
+      .rights-grid { grid-template-columns: 1fr; }
+      .right-card { padding: 1.4rem; }
+      .right-icon { font-size: 1.3rem; }
+
+      section.legal { margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
+      h2.sec-title { font-size: 1.45rem; }
+
+      .info-box, .warn-box { padding: 1rem 1.2rem; }
+
+      .contact-block { padding: 1.8rem 1.4rem; }
+      .contact-block h3 { font-size: 1.25rem; }
+
+      footer { padding: 2rem 5vw; text-align: left; }
+      .footer-legal { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .footer-links-row { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="IMG_0138.png" alt="To Base logo" />
+    <span class="nav-logo-text">To Base</span>
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 19l-7-7 7-7"/></svg>
+    <span>Početna</span>
+  </a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Opća uredba o zaštiti podataka</span>
+    <h1>GDPR – Zaštita<br><em>osobnih podataka</em></h1>
+    <p class="meta">Uredba (EU) 2016/679 &nbsp;·&nbsp; To Base d.o.o. &nbsp;·&nbsp; Lipanj 2025.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="toc">
+    <div class="toc-title">Sadržaj</div>
+    <ol>
+      <li><a href="#sto-je-gdpr">Što je GDPR</a></li>
+      <li><a href="#voditelj-gdpr">Voditelj obrade</a></li>
+      <li><a href="#osnove-obrade">Pravne osnove obrade</a></li>
+      <li><a href="#kategorije">Kategorije osobnih podataka</a></li>
+      <li><a href="#prava-gdpr">Vaša prava prema GDPR-u</a></li>
+      <li><a href="#rokovi">Rokovi čuvanja podataka</a></li>
+      <li><a href="#sigurnost">Sigurnost podataka</a></li>
+      <li><a href="#prijenos">Prijenos podataka izvan EU</a></li>
+      <li><a href="#prituzba">Pravo na pritužbu</a></li>
+      <li><a href="#kontakt-gdpr">Kontakt voditelja obrade</a></li>
+    </ol>
+  </div>
+
+  <section class="legal" id="sto-je-gdpr">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Što je GDPR</h2>
+    <p>Opća uredba o zaštiti podataka (GDPR — General Data Protection Regulation), Uredba (EU) 2016/679 Europskog parlamenta i Vijeća, primjenjuje se od 25. svibnja 2018. godine u svim državama članicama Europske unije, uključujući Republiku Hrvatsku.</p>
+    <p>GDPR uspostavlja sveobuhvatan okvir za zaštitu osobnih podataka fizičkih osoba te obvezuje sve organizacije koje obrađuju osobne podatke građana EU-a da to čine transparentno, sigurno i u skladu s propisanim načelima.</p>
+    <div class="info-box">
+      <p>To Base d.o.o. obrađuje osobne podatke sukladno svim zahtjevima GDPR-a i primjenjivim nacionalnim propisima o zaštiti osobnih podataka.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="voditelj-gdpr">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Voditelj obrade</h2>
+    <p>Voditelj obrade u smislu čl. 4. st. 7. GDPR-a je:</p>
+    <p>
+      <strong>To Base d.o.o.</strong><br>
+      Andrije Štangera 24, 51410 Opatija, Hrvatska<br>
+      OIB: 60378433749 &nbsp;·&nbsp; MBS: 06148735<br>
+      E-mail: <a href="/cdn-cgi/l/email-protection#127b7c747d52667d3f707361773c7a60"><span class="__cf_email__" data-cfemail="fa93949c95ba8e95d7989b899fd49288">[email&#160;protected]</span></a><br>
+      Telefon: <a href="tel:+38595385990">+385 95 385 9903</a>
+    </p>
+    <p style="margin-top:1rem;">To Base d.o.o. nije obvezan imenovati Službenika za zaštitu podataka (DPO) sukladno čl. 37. GDPR-a, s obzirom na opseg i prirodu obrade osobnih podataka. Za sva pitanja u vezi sa zaštitom osobnih podataka obratite se na gore navedene kontakt podatke.</p>
+  </section>
+
+  <section class="legal" id="osnove-obrade">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Pravne osnove obrade</h2>
+    <p>Svaka obrada osobnih podataka koju provodi To Base d.o.o. temelji se na jednoj od sljedećih zakonitih osnova iz čl. 6. GDPR-a:</p>
+    <ul>
+      <li><strong>Pristanak (čl. 6/1/a)</strong> — kada ste nam dali jasnu, slobodnu i informiranu suglasnost za određenu obradu</li>
+      <li><strong>Izvršenje ugovora (čl. 6/1/b)</strong> — kada je obrada nužna za ispunjenje ugovornih obveza prema vama</li>
+      <li><strong>Pravna obveza (čl. 6/1/c)</strong> — kada obradu zahtijevaju primjenjivi zakonski propisi (npr. računovodstveni, porezni)</li>
+      <li><strong>Legitimni interes (čl. 6/1/f)</strong> — kada je obrada nužna za naše legitimne poslovne interese, a koji ne prevladavaju nad vašim pravima i slobodama</li>
+    </ul>
+  </section>
+
+  <section class="legal" id="kategorije">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Kategorije osobnih podataka</h2>
+    <p>To Base d.o.o. obrađuje isključivo uobičajene (ne-posebne) kategorije osobnih podataka:</p>
+    <ul>
+      <li>Identifikacijski podaci (ime, prezime)</li>
+      <li>Kontaktni podaci (e-mail, telefon, adresa)</li>
+      <li>Podaci o poslovnom upitu ili interesu</li>
+      <li>Komunikacijski podaci (korespondencija)</li>
+      <li>Tehnički podaci o korištenju web stranice (anonomizirani)</li>
+    </ul>
+    <div class="warn-box">
+      <p>Ne obrađujemo posebne kategorije osobnih podataka iz čl. 9. GDPR-a (rasno ili etničko podrijetlo, politička mišljenja, zdravstveni podaci, biometrijski podaci i sl.).</p>
+    </div>
+  </section>
+
+  <section class="legal" id="prava-gdpr">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Vaša prava prema GDPR-u</h2>
+    <p>Kao ispitanik — fizička osoba čiji se osobni podaci obrađuju — imate sljedeća prava garantirana GDPR-om:</p>
+
+    <div class="rights-grid">
+      <div class="right-card">
+        <span class="right-icon">👁</span>
+        <h3>Pravo na pristup</h3>
+        <p>Pravo dobiti potvrdu obrađujemo li vaše podatke i kopiju tih podataka (čl. 15. GDPR).</p>
+      </div>
+      <div class="right-card">
+        <span class="right-icon">✏️</span>
+        <h3>Pravo na ispravak</h3>
+        <p>Pravo zahtijevati ispravak netočnih ili dopunu nepotpunih podataka (čl. 16. GDPR).</p>
+      </div>
+      <div class="right-card">
+        <span class="right-icon">🗑</span>
+        <h3>Pravo na brisanje</h3>
+        <p>Pravo tražiti brisanje podataka koji se više ne trebaju obrađivati (čl. 17. GDPR).</p>
+      </div>
+      <div class="right-card">
+        <span class="right-icon">⏸</span>
+        <h3>Pravo na ograničenje</h3>
+        <p>Pravo zahtijevati privremenu obustavu obrade u određenim okolnostima (čl. 18. GDPR).</p>
+      </div>
+      <div class="right-card">
+        <span class="right-icon">📦</span>
+        <h3>Pravo na prenosivost</h3>
+        <p>Pravo primiti podatke u strukturiranom, strojno čitljivom formatu (čl. 20. GDPR).</p>
+      </div>
+      <div class="right-card">
+        <span class="right-icon">🚫</span>
+        <h3>Pravo na prigovor</h3>
+        <p>Pravo protiviti se obradi baziranoj na legitimnom interesu (čl. 21. GDPR).</p>
+      </div>
+    </div>
+
+    <p>Svoja prava možete ostvariti slanjem zahtjeva na: <a href="/cdn-cgi/l/email-protection#ef86818980af9b80c28d8e9c8ac1879d"><span class="__cf_email__" data-cfemail="afc6c1c9c0efdbc082cdcedcca81c7dd">[email&#160;protected]</span></a></p>
+    <p>Na zahtjev ćemo odgovoriti <strong>najkasnije u roku od 30 dana</strong>. U slučaju složenih zahtjeva, rok se može produžiti za dodatnih 60 dana uz obavijest o razlozima produženja.</p>
+    <p>Ostvarivanje prava je <strong>besplatno</strong>, osim u slučaju očito neutemeljenih ili prekomjernih zahtjeva.</p>
+  </section>
+
+  <section class="legal" id="rokovi">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Rokovi čuvanja podataka</h2>
+    <p>Podatke čuvamo samo onoliko dugo koliko je potrebno za svrhu u koju su prikupljeni, u skladu s načelom ograničenja pohrane (čl. 5/1/e GDPR):</p>
+    <ul>
+      <li><strong>Kontaktni upiti (bez ugovora):</strong> 2 godine od zadnjeg kontakta</li>
+      <li><strong>Ugovorni odnos:</strong> 5 godina od prestanka ugovornog odnosa (sukladno Zakonu o obveznim odnosima)</li>
+      <li><strong>Računovodstveni podaci:</strong> 11 godina (sukladno poreznim propisima)</li>
+      <li><strong>Podaci na temelju pristanka:</strong> do opoziva pristanka ili prestanka svrhe</li>
+    </ul>
+    <p>Po isteku roka čuvanja, podatke brišemo ili anonimiziramo na siguran način.</p>
+  </section>
+
+  <section class="legal" id="sigurnost">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Sigurnost podataka</h2>
+    <p>Sukladno čl. 32. GDPR-a, provodimo odgovarajuće tehničke i organizacijske mjere za zaštitu osobnih podataka od neovlaštenog pristupa, gubitka, uništenja ili izmjene:</p>
+    <ul>
+      <li>SSL/TLS enkripcija pri prijenosu podataka</li>
+      <li>Kontrola pristupa internim sustavima i bazama podataka</li>
+      <li>Redovita sigurnosna ažuriranja sustava</li>
+      <li>Povjerljivost zaposlenika koji rukuju osobnim podacima</li>
+    </ul>
+    <p>U slučaju povrede osobnih podataka koja bi mogla predstavljati visok rizik za vaša prava, obavijestit ćemo vas bez nepotrebnog odgađanja, sukladno čl. 34. GDPR-a.</p>
+  </section>
+
+  <section class="legal" id="prijenos">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">Prijenos podataka izvan EU</h2>
+    <p>To Base d.o.o. u pravilu ne prenosi osobne podatke izvan Europskog gospodarskog prostora (EGP). U slučaju eventualne upotrebe alata čiji pružatelji imaju sjedište izvan EGP-a (npr. oblak usluge), osiguravamo odgovarajuće zaštitne mjere sukladno čl. 46. GDPR-a, poput standardnih ugovornih klauzula Europske komisije.</p>
+  </section>
+
+  <section class="legal" id="prituzba">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">Pravo na pritužbu</h2>
+    <p>Ako smatrate da obrada vaših osobnih podataka krši GDPR ili primjenjive nacionalne propise, imate pravo podnijeti pritužbu nadzornom tijelu:</p>
+    <p>
+      <strong>Agencija za zaštitu osobnih podataka (AZOP)</strong><br>
+      Selska cesta 136, 10000 Zagreb<br>
+      Tel: <a href="tel:+38514609000">+385 1 4609 000</a><br>
+      Web: <a href="https://www.azop.hr" target="_blank" rel="noopener">www.azop.hr</a><br>
+      E-mail: <a href="/cdn-cgi/l/email-protection#f7968d9887b7968d9887d99f85"><span class="__cf_email__" data-cfemail="7a1b00150a3a1b00150a541208">[email&#160;protected]</span></a>
+    </p>
+    <div class="info-box">
+      <p>Preporučujemo da nas prije podnošenja pritužbe nadzornom tijelu kontaktirate direktno — trudimo se riješiti svaki prigovor u što kraćem roku.</p>
+    </div>
+  </section>
+
+  <section class="legal" id="kontakt-gdpr">
+    <span class="sec-num">10</span>
+    <h2 class="sec-title">Kontakt voditelja obrade</h2>
+    <p>Za sva pitanja u vezi s obradom osobnih podataka i ostvarivanjem vaših prava:</p>
+  </section>
+
+  <div class="contact-block">
+    <h3>To Base d.o.o.</h3>
+    <p>Andrije Štangera 24, 51410 Opatija, Hrvatska</p>
+    <p>OIB: 60378433749 &nbsp;·&nbsp; MBS: 06148735</p>
+    <p>E-mail: <a href="/cdn-cgi/l/email-protection#563f3830391622397b34372533783e24"><span class="__cf_email__" data-cfemail="21484f474e61554e0c434052440f4953">[email&#160;protected]</span></a></p>
+    <p>Telefon: <a href="tel:+38595
