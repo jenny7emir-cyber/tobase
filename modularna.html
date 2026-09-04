@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+' <!DOCTYPE html>
 <html lang="hr">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0;}
     :root {
       --ink: #0d0d14;
       --cyan: #00c4cc;
@@ -127,19 +127,19 @@
     .timeline-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
     .timeline-item p { font-size: 0.9rem; color: var(--warm-grey); font-weight: 300; line-height: 1.7; max-width: 650px; }
 
-    /* GLS TECH */
-    .gls { padding: 6rem 5vw; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .gls-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--ink); line-height: 1.2; margin: 1rem 0 1.2rem; }
-    .gls-text h2 em { font-style: italic; color: var(--cyan); }
-    .gls-text p { font-size: 0.92rem; color: var(--warm-grey); font-weight: 300; line-height: 1.75; margin-bottom: 1.2rem; }
-    .gls-specs { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.5rem; }
-    .gls-specs li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; color: var(--ink); font-weight: 300; line-height: 1.5; }
+    /* LGS . TECH */
+    .lgs { padding: 6rem 5vw; background: var(--surface); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .lgs-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--ink); line-height: 1.2; margin: 1rem 0 1.2rem; }
+    .lgs-text h2 em { font-style: italic; color: var(--cyan); }
+    .lgs-text p { font-size: 0.92rem; color: var(--warm-grey); font-weight: 300; line-height: 1.75; margin-bottom: 1.2rem; }
+    .lgs-specs { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.5rem; }
+    .lgs-specs li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.88rem; color: var(--ink); font-weight: 300; line-height: 1.5; }
     .spec-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--cyan-dim); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-    .gls-visual { position: relative; }
-    .gls-img-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 2px; display: block; }
-    .gls-badge { position: absolute; bottom: -1.5rem; right: -1rem; background: var(--ink); border: 1px solid rgba(0,196,204,0.25); border-left: 3px solid var(--cyan); padding: 1.2rem 1.5rem; border-radius: 2px; }
-    .gls-badge .b-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.3rem; }
-    .gls-badge .b-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; font-weight: 300; }
+    .lgs-visual { position: relative; }
+    .lgs-img-main { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 2px; display: block; }
+    .lgs-badge { position: absolute; bottom: -1.5rem; right: -1rem; background: var(--ink); border: 1px solid rgba(0,196,204,0.25); border-left: 3px solid var(--cyan); padding: 1.2rem 1.5rem; border-radius: 2px; }
+    .lgs-badge .b-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.3rem; }
+    .lgs-badge .b-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: #fff; font-weight: 300; }
 
     /* DOCUMENTATION */
     .docs { padding: 6rem 5vw; background: var(--off-white); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -177,7 +177,7 @@
       .photo-section { grid-template-columns: 1fr 1fr; height: auto; }
       .photo-item { height: 240px; }
       .photo-section .photo-item:last-child { grid-column: span 2; }
-      .gls { grid-template-columns: 1fr; gap: 3rem; }
+      .lgs { grid-template-columns: 1fr; gap: 3rem; }
       .docs { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 600px) {
@@ -376,8 +376,8 @@
       <div class="timeline-item">
         <div class="timeline-dot">05</div>
         <div class="timeline-time">Faza 5 · tjedan 28–40</div>
-        <h3>Montaža GLS konstrukcije</h3>
-        <p>Tvorničke precizno izrađeni GLS čelični elementi dovažaju se na teren i montiraju. Sama montaža traje 2 do 3 mjeseca — neovisno o vremenskim uvjetima, bez mokrog procesaa i čekanja.</p>
+        <h3>Montaža LGS konstrukcije</h3>
+        <p>Tvorničke precizno izrađeni LGS čelični elementi dovažaju se na teren i montiraju. Sama montaža traje 2 do 3 mjeseca — neovisno o vremenskim uvjetima, bez mokrog procesaa i čekanja.</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot">06</div>
