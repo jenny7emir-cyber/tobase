@@ -1230,16 +1230,18 @@
       e.preventDefault();
       const data = new FormData(form);
       try {
-        await fetch('/', {
+        const r = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams(data).toString()
         });
+        if (!r.ok) throw new Error(r.status);
+        msg.textContent = '✓ Hvala! Javit ćemo Vam se što je prije moguće.';
         msg.style.display = 'block';
         form.reset();
       } catch {
         msg.style.display = 'block';
-        msg.textContent = '✓ Hvala na upitu! Javit ćemo Vam se uskoro.';
+        msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>.';
       }
     });
 
