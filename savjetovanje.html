@@ -148,6 +148,37 @@
       .intro-nums { grid-template-columns: 1fr 1fr; }
     }
   </style>
+
+  <style>
+    /* ---- Pošaljite upit (forma) ---- */
+    .upit { padding: 6rem 5vw; background: var(--off-white); display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; scroll-margin-top: 80px; }
+    .upit-label { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #00898f; margin-bottom: 0.8rem; }
+    .upit h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.6vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--ink); margin: 0; }
+    .upit h2 em { font-style: italic; color: var(--pink); }
+    .upit-lead { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 300; line-height: 1.7; color: #5c5c6b; margin: 1.2rem 0 0; max-width: 420px; }
+    .upit-divider { width: 40px; height: 1px; background: var(--cyan); margin: 1.6rem 0; opacity: 0.6; }
+    .upit-tel { font-family: 'DM Sans', sans-serif; color: var(--pink); text-decoration: none; font-size: 1.05rem; }
+    .upit-tel:hover { color: var(--ink); }
+    .upit-form { display: flex; flex-direction: column; gap: 1.2rem; font-family: 'DM Sans', sans-serif; }
+    .upit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .upit-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .upit-group label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6b7b; }
+    .upit-group input, .upit-group select, .upit-group textarea { background: transparent; border: none; border-bottom: 1px solid rgba(13,13,20,0.18); border-radius: 0; padding: 0.7rem 0; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--ink); outline: none; transition: border-color 0.2s; appearance: none; -webkit-appearance: none; }
+    .upit-group input:focus, .upit-group select:focus, .upit-group textarea:focus { border-bottom-color: var(--cyan); }
+    .upit-group input::placeholder, .upit-group textarea::placeholder { color: #a5a5b2; }
+    .upit-group textarea { resize: vertical; min-height: 110px; }
+    .upit-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .upit-submit { margin-top: 0.6rem; align-self: flex-start; background: var(--pink); color: #fff; padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; transition: background 0.25s, color 0.25s; }
+    .upit-submit:hover { background: var(--cyan); color: var(--ink); }
+    .upit-submit:disabled { opacity: 0.6; cursor: wait; }
+    .upit-note { font-size: 0.75rem; color: #6b6b7b; line-height: 1.5; }
+    .upit-note a { color: #6b6b7b; }
+    .upit-msg { display: none; padding: 1rem 1.4rem; border-radius: 2px; font-size: 0.9rem; }
+    .upit-msg.ok { display: block; background: rgba(0,196,204,0.08); border: 1px solid var(--cyan); color: #00777c; }
+    .upit-msg.err { display: block; background: rgba(255,45,138,0.06); border: 1px solid var(--pink); color: #b0125e; }
+    @media (max-width: 900px) { .upit { grid-template-columns: 1fr; gap: 2.5rem; padding: 4.5rem 5vw; } }
+    @media (max-width: 600px) { .upit-row { grid-template-columns: 1fr; } .upit-submit { width: 100%; } }
+  </style>
 </head>
 <body>
 
@@ -175,7 +206,7 @@
         Od prve ideje do konkretnog plana s izračunom povrata investicije — vodimo vas kroz svaki korak odluke o ulaganju u nekretnine.
       </p>
       <div class="cta-row">
-        <a href="index.html#kontakt" class="btn-primary">Zatražite savjetovanje</a>
+        <a href="#upit" class="btn-primary">Zatražite savjetovanje</a>
         <a href="#savjetovanje" class="btn-outline">Što nudimo →</a>
       </div>
     </div>
@@ -355,7 +386,7 @@
         <h2>Odluke temeljene<br>na <em>brojkama</em>,<br>ne na osjećaju</h2>
         <p>Previše investitora kupuje na temelju "čini se dobro" — i plaća grešku godinama. Mi donosimo analitički okvir koji skida emocije iz jednadžbe.</p>
         <p>Naše savjetovanje nije prodaja nekretnine — to je nezavisna analiza u vašem interesu.</p>
-        <a href="index.html#kontakt" class="btn-primary" style="margin-top:0.5rem; display:inline-block;">Dogovorite konzultaciju</a>
+        <a href="#upit" class="btn-primary" style="margin-top:0.5rem; display:inline-block;">Dogovorite konzultaciju</a>
       </div>
       <div class="roi-cards">
         <div class="roi-card">
@@ -387,9 +418,58 @@
     <h2>Vaša investicija zaslužuje<br><em>pravi plan</em></h2>
     <p>Besplatni uvodni razgovor. Bez obveza. Konkretni odgovori.</p>
     <div class="cta-btns">
-      <a href="index.html#kontakt" class="btn-primary">Zatražite savjetovanje</a>
+      <a href="#upit" class="btn-primary">Zatražite savjetovanje</a>
       <a href="index.html#usluge" class="btn-outline">Ostale usluge</a>
     </div>
+  </section>
+
+    <!-- POŠALJITE UPIT -->
+  <section class="upit" id="upit">
+    <div>
+      <div class="upit-label">Pošaljite upit</div>
+      <h2>Trebate <em>savjet ili plan?</em></h2>
+      <p class="upit-lead">Ukratko opišite situaciju – dogovorit ćemo besplatni uvodni razgovor.</p>
+      <div class="upit-divider"></div>
+      <a class="upit-tel" href="tel:+385953859903">+385 95 385 9903</a>
+    </div>
+    <form class="upit-form" id="upitForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="upit-hp"><label>Ne ispunjavati: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <div class="upit-row">
+        <div class="upit-group">
+          <label for="upit-ime">Ime i prezime</label>
+          <input id="upit-ime" type="text" name="ime" placeholder="Vaše ime" autocomplete="name" required />
+        </div>
+        <div class="upit-group">
+          <label for="upit-email">Email</label>
+          <input id="upit-email" type="email" name="email" placeholder="vas@email.com" autocomplete="email" required />
+        </div>
+      </div>
+      <div class="upit-row">
+        <div class="upit-group">
+          <label for="upit-tel">Telefon</label>
+          <input id="upit-tel" type="tel" name="telefon" placeholder="+385..." autocomplete="tel" />
+        </div>
+        <div class="upit-group">
+          <label for="upit-usluga">Područje interesa</label>
+          <select id="upit-usluga" name="usluga">
+          <option>Posredovanje u nekretninama</option>
+          <option>eMobility / ChargePort</option>
+          <option>Montažna gradnja</option>
+          <option selected>Savjetovanje</option>
+          <option>Investicijski projekti</option>
+          <option>Pametna urbana rješenja</option>
+          </select>
+        </div>
+      </div>
+      <div class="upit-group">
+        <label for="upit-poruka">Poruka</label>
+        <textarea id="upit-poruka" name="poruka" placeholder="Opišite Vašu ideju ili projekt..." required></textarea>
+      </div>
+      <p class="upit-note">Slanjem upita prihvaćate <a href="privatnost.html">politiku privatnosti</a>.</p>
+      <button type="submit" class="upit-submit">Pošalji upit</button>
+      <div class="upit-msg" id="upitMsg" role="status" aria-live="polite"></div>
+    </form>
   </section>
 
   <footer>
@@ -405,5 +485,33 @@
     </div>
   </footer>
 
+
+  <script>
+    // Pošaljite upit – slanje preko Netlify Forms bez napuštanja stranice
+    (function () {
+      var form = document.getElementById('upitForm');
+      if (!form) return;
+      var msg = document.getElementById('upitMsg');
+      var btn = form.querySelector('.upit-submit');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        btn.disabled = true;
+        msg.className = 'upit-msg';
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString()
+        }).then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          msg.textContent = '✓ Hvala! Vaš upit je poslan – javit ćemo Vam se što je prije moguće.';
+          msg.className = 'upit-msg ok';
+          var keep = form.usluga.value; form.reset(); form.usluga.value = keep;
+        }).catch(function () {
+          msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>.';
+          msg.className = 'upit-msg err';
+        }).finally(function () { btn.disabled = false; });
+      });
+    })();
+  </script>
 </body>
 </html>
