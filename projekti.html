@@ -226,8 +226,8 @@
           msg.textContent = '✓ Hvala! Vaš upit je poslan – javit ćemo Vam se što je prije moguće.';
           msg.className = 'upit-msg ok';
           var keep = form.usluga.value; form.reset(); form.usluga.value = keep;
-        }).catch(function () {
-          msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>.';
+        }).catch(function (err) {
+          msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>. <small style="opacity:.6">(kod: ' + (err && err.message ? err.message : 'mreža') + ')</small>';
           msg.className = 'upit-msg err';
         }).finally(function () { btn.disabled = false; });
       });

@@ -1239,9 +1239,9 @@
         msg.textContent = '✓ Hvala! Javit ćemo Vam se što je prije moguće.';
         msg.style.display = 'block';
         form.reset();
-      } catch {
+      } catch (err) {
         msg.style.display = 'block';
-        msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>.';
+        msg.innerHTML = 'Upit nije poslan. Pokušajte ponovno ili nas nazovite na <a href="tel:+385953859903">+385 95 385 9903</a>. <small style="opacity:.6">(kod: ' + (err && err.message ? err.message : 'mreža') + ')</small>';
       }
     });
 
